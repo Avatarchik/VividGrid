@@ -1,0 +1,27 @@
+<ZoneCollection>
+	<Zones>
+		<Zone name="Test Zone">
+			<Stats>
+				<!-- maybe duration played or total percent? -->
+			</Stats>
+			<Levels>
+				<Level>
+					<LevelID>1</LevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>1</RequiredMoves>
+					<BestMoves>0</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>2</LevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>2</RequiredMoves>
+					<BestMoves>0</BestMoves>
+				</Level>
+			</Levels>
+		</Zone>
+	</Zones>
+</ZoneCollection>

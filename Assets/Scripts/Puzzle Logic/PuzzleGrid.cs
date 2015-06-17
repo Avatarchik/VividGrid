@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -138,12 +138,18 @@ public class PuzzleGrid : MonoBehaviour {
 
 	public void LoadLayout () {
 
+
+		// var filepath = Application.dataPath + "/Data/Levels/level" + _levelID + ".vgl";
+
 		// get ready to load file
 		var turretCommands = new List<string>();
-		var filepath = Application.dataPath + "/Data/Levels/level" + _levelID + ".vgl";
+
+		// load level asset and convert to bytestream
+		var levelInfo = Resources.Load<TextAsset>("Levels/level" + _levelID);
+		var byteStream = new MemoryStream(levelInfo.bytes);
 
 		// load file into strings
-		var reader = new  StreamReader(filepath);
+		var reader = new StreamReader(byteStream);
         try {
             do {
                 turretCommands.Add(reader.ReadLine());
@@ -154,7 +160,7 @@ public class PuzzleGrid : MonoBehaviour {
             reader.Close();
         }
 
-        // 
+        // initialize turret containers
         int numTurrets = turretCommands.Count;
         turrets = new Turret[numTurrets];
 
