@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-using System.Collections.Generic;
-using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
-using System.Text;
-
 
 public class Level {
 	public int LevelID;
+	public int NextLevelID;
 	public bool IsUnlocked;
 	public bool IsComplete;
 	public bool IsAced;
@@ -22,20 +19,42 @@ public class Level {
 		} else {
 			Debug.Log("Is Not Complete");
 		}
+
+		if (IsAced) {
+			Debug.Log("Is Aced");
+		} else {
+			Debug.Log("Is Not Aced");
+		}
+
+		if (IsUnlocked) {
+			Debug.Log("Is Unlocked");
+		} else {
+			Debug.Log("Is Locked");
+		}
 	}
-
-
 }
 
 public class Zone {
 
-	[XmlAttribute("name")]
+	[XmlAttribute]
 	public string Name;
 
 	[XmlArray("Levels"), XmlArrayItem("Level")]
-	public Level[] levels;// = new List<Level>();
+	public Level[] levels;
+
+	// zone stats
+	public int TotalLevels;
+	public int CompletedLevels;
+	public float CompletionPercentage;
 
 	public void DebugOutput () {
+
+		Debug.Log("Zone Stats");
+		Debug.Log("Total Levels: " + TotalLevels);
+		Debug.Log("Completed Levels: " + CompletedLevels);
+		Debug.Log("Completion %: " + CompletionPercentage);
+
+		// zoneStats.DebugOutput();
 		foreach (Level l in levels) {
 			l.DebugOutput();
 		}
@@ -50,18 +69,23 @@ public class Zone {
 		return null;
 	}
 
-	// public void LoadLevel ( int levelID, bool isUnlocked, bool isComplete, bool isAced, int requiredMoves, int bestMoves ) {
-	// 	var level = new Level();
+	public void UpdateStats () {
 
-	// 	level.LevelID = levelID;
-	// 	level.IsUnlocked = isUnlocked;
-	// 	level.IsComplete = isComplete;
-	// 	level.IsAced = isAced;
-	// 	level.RequiredMoves = requiredMoves;
-	// 	level.BestMoves = bestMoves;
+		int totalLevels = levels.Length;
+		int completedLevels = 0;
+		int acedLevels = 0;
+		foreach (Level l in levels) {
+			completedLevels = (l.IsComplete) ? completedLevels + 1 : completedLevels;
+			acedLevels = (l.IsAced) ? acedLevels + 1 : acedLevels;
+		}
+		float completionPercentage = (((float)completedLevels/(float)totalLevels) * 0.5f) +
+									 (((float)acedLevels/(float)totalLevels) * 0.5f);
 
-	// 	levels.Add(level);
-	// }
+		// update stats
+		TotalLevels = totalLevels;
+		CompletedLevels = completedLevels;
+		CompletionPercentage = completionPercentage;
+	}
 }
 
 [XmlRoot("ZoneCollection")]
@@ -114,52 +138,135 @@ public class ProgressionManager : MonoBehaviour {
 
 	public TextAsset _originalGameData;
 
+	private string levelPackName = "DefaultLevelPack";
+
 	private ZoneContainer zones;
 	private string nameOfCurrentZone = "Test Zone";
 
+	private bool shouldBeSavedFlag;
+	private bool statsShouldBeUpdatedFlag;
+
 	// Use this for initialization
 	void Start () {
-		Debug.Log("Is Even Here");
+
 		loadProgress();
 	}
 
-	private void loadProgress () {
+	public void LevelCompleted ( int levelID, int numberOfMoves ) {
 
-		// check to see if file has been created
-		if ( File.Exists(Path.Combine(Application.persistentDataPath, "Zones.xml")) ) {
-			zones = ZoneContainer.Load(Path.Combine(Application.persistentDataPath, "Zones.xml"));
-		} else { // if not, load it from the resources
-			zones = ZoneContainer.LoadFromText(_originalGameData.text);
-			// zones = ZoneContainer.Load(Path.Combine(Application.dataPath, "Data/Zones.xml"));
+		Debug.Log("Level " + levelID + " Completed");
+		var level = getLevel(levelID);
+		if (level != null) {
+			setComplete(level);
+			registerMoves(level, numberOfMoves);
 		}
+		commitChanges();
+	}
 
-		zones.DebugOutput();
+	public void LevelAced ( int levelID, int numberOfMoves ) {
+
+		Debug.Log("Level " + levelID + " Aced");
+		var level = getLevel(levelID);
+		if (level != null) {
+			setAced(level);
+			registerMoves(level, numberOfMoves);
+		}
+		commitChanges();
 	}
 
 	public void ResetAllProgress () {
 
-		zones = ZoneContainer.Load(Path.Combine(Application.dataPath, "Data/Zones.xml"));
+		zones = ZoneContainer.LoadFromText(_originalGameData.text);
 		saveProgress();
 	}
 
-	private void saveProgress () {
-		zones.Save(Path.Combine(Application.persistentDataPath, "Zones.xml"));
+	private void setComplete ( Level level ) {
+
+		if ( !level.IsComplete ) {
+			level.IsComplete = true;
+			unlockNextLevel( level );
+			setSaveFlag();
+			setStatsShouldBeUpdatedFlag();
+		}
 	}
 
-	public void LevelCompleted ( int levelID ) {
+	private void setAced ( Level level ) {
 
-		Debug.Log("Level " + levelID + " Completed");
-		var zone = zones.GetZone(nameOfCurrentZone);
-		if (zone != null) {
-			var level = zone.GetLevel(levelID);
-			if (level != null) {
-				level.IsComplete = true;
-				saveProgress();
+		setComplete(level);
+		if ( !level.IsAced ) {
+			level.IsAced = true;
+			setSaveFlag();
+			setStatsShouldBeUpdatedFlag();
+		}
+	}
+
+	private void registerMoves ( Level level, int numberOfMoves ) {
+
+		if ( numberOfMoves < level.BestMoves || level.BestMoves == -1 ) {
+			level.BestMoves = numberOfMoves;
+			setSaveFlag();
+		}
+	}
+
+	private void setStatsShouldBeUpdatedFlag() {
+
+		statsShouldBeUpdatedFlag = true;
+	}
+
+	private void setSaveFlag () {
+
+		shouldBeSavedFlag = true;
+	}
+
+	private void commitChanges () {
+
+		if (statsShouldBeUpdatedFlag) {
+			zones.GetZone(nameOfCurrentZone).UpdateStats();
+		}
+		if (shouldBeSavedFlag) {
+			saveProgress();
+		}
+		statsShouldBeUpdatedFlag = false;
+		shouldBeSavedFlag = false;
+	}
+
+	private void unlockNextLevel ( Level thisLevel ) {
+
+		var nextID = thisLevel.NextLevelID;
+		if ( nextID != -1 ) {
+			var nextLevel = getLevel(nextID);
+			if ( !nextLevel.IsUnlocked ) {
+				nextLevel.IsUnlocked = true;
+				setSaveFlag();
 			}
 		}
 	}
 
-	public void LevelAced ( int levelID ) {
+	private Level getLevel ( int levelID ) {
 
+		var zone = zones.GetZone(nameOfCurrentZone);
+		if (zone != null) {
+			var level = zone.GetLevel(levelID);
+			if (level != null) {
+				return level;
+			}
+			Debug.Log("Tried to access invalid levelID");
+		} else {
+			Debug.Log("Tried to access invalid zoneName");
+		}
+		return null;
+	}
+
+	private void loadProgress () {
+
+		var pPath = Path.Combine(Application.persistentDataPath, levelPackName + ".xml");
+		zones = (File.Exists(pPath)) ? ZoneContainer.Load(pPath) : ZoneContainer.LoadFromText(_originalGameData.text);
+
+		zones.DebugOutput();
+	}
+
+	private void saveProgress () {
+
+		zones.Save(Path.Combine(Application.persistentDataPath, levelPackName + ".xml"));
 	}
 }
