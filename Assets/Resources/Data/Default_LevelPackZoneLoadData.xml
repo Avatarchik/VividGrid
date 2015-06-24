@@ -1,4 +1,5 @@
 <ZoneCollection>
+	<DefaultZoneName>Test Zone</DefaultZoneName>
 	<Zones>
 		<Zone Name="Test Zone">
 			<!--  Zone Stats -->

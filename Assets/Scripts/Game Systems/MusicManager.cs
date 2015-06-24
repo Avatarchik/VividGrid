@@ -58,11 +58,10 @@ public class Song {
 	}
 }
 
-[RequireComponent(typeof(AudioSource))]
 public class MusicManager : MonoBehaviour {
 
 	// ************ Singleton Logic ***************
-   public static MusicManager Instance;
+	public static MusicManager Instance;
 	void Awake() {
 		if (Instance) {
 			DestroyImmediate(gameObject);
@@ -85,6 +84,12 @@ public class MusicManager : MonoBehaviour {
 
 	private Song currentSong = new Song();
 	private Song nextSong = new Song();
+
+
+	public void ugh () {
+
+		Application.LoadLevel(1);
+	}
 
 	// Use this for initialization
 	void Initialize () {
@@ -126,6 +131,7 @@ public class MusicManager : MonoBehaviour {
 	*/
 	public void SetInitialClip ( AudioClip clip ) {
 
+		audioPlayer.time = 0.0f;
 		audioPlayer.clip = clip;
 		audioPlayer.Play();
 	}
@@ -193,44 +199,42 @@ public class MusicManager : MonoBehaviour {
 	// private functions
 	private IEnumerator transition ( AudioClip nextClip ) {
 
-		if (isCrossfading)
-			Debug.Log("Is Crossfading");
-		else
-			Debug.Log("Is Not Crossfading");
+		if ( audioPlayer.clip != nextClip ) {
 
 			Debug.Log("Begin Transition");
-		
-		if (isCrossfading) {
+			
+			if (isCrossfading) {
 
-			// move the players along, and let the crossfade keep riding it out
-			var time = audioPlayer.time;
-			audioPlayer.Stop();
-			crossfader.Stop();
+				// move the players along, and let the crossfade keep riding it out
+				var time = audioPlayer.time;
+				audioPlayer.Stop();
+				crossfader.Stop();
 
-			audioPlayer.clip = crossfader.clip;
-			crossfader.clip = nextClip;
+				audioPlayer.clip = crossfader.clip;
+				crossfader.clip = nextClip;
 
-			audioPlayer.volume = crossfader.volume;
-			crossfader.volume = 1.0f - audioPlayer.volume;
+				audioPlayer.volume = crossfader.volume;
+				crossfader.volume = 1.0f - audioPlayer.volume;
 
-			audioPlayer.time = time;
-			crossfader.time = time;
+				audioPlayer.time = time;
+				crossfader.time = time;
 
-			audioPlayer.Play();
-			crossfader.Play();
+				audioPlayer.Play();
+				crossfader.Play();
 
-		} else {
-			// start a fresh crossfade
-			isTransitioning = true;
+			} else {
+				// start a fresh crossfade
+				isTransitioning = true;
 
-			// set up the crossfader
-			crossfader.volume = 0.0f;
-			crossfader.clip = nextClip;
-			crossfader.time = audioPlayer.time;
-			crossfader.Play();
+				// set up the crossfader
+				crossfader.volume = 0.0f;
+				crossfader.clip = nextClip;
+				crossfader.time = audioPlayer.time;
+				crossfader.Play();
 
-			// execute the fade
-			yield return StartCoroutine(crossfade());
+				// execute the fade
+				yield return StartCoroutine(crossfade());
+			}
 		}
 	}
 

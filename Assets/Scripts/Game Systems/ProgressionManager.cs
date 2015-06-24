@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 
@@ -89,7 +89,9 @@ public class Zone {
 }
 
 [XmlRoot("ZoneCollection")]
-public class ZoneContainer {
+public class LevelPack {
+
+	public string DefaultZoneName;
 
 	[XmlArray("Zones"), XmlArrayItem("Zone")]
 	public Zone[] zones;
@@ -111,50 +113,122 @@ public class ZoneContainer {
 
 	public void Save(string path)
     {
-        var serializer = new XmlSerializer(typeof(ZoneContainer));
+        var serializer = new XmlSerializer(typeof(LevelPack));
         using(var stream = new FileStream(path, FileMode.Create))
         {
             serializer.Serialize(stream, this);
         }
     }
    
-    public static ZoneContainer Load(string path)
+    public static LevelPack Load(string path)
     {
-        var serializer = new XmlSerializer(typeof(ZoneContainer));
+        var serializer = new XmlSerializer(typeof(LevelPack));
         using(var stream = new FileStream(path, FileMode.Open))
         {
-            return serializer.Deserialize(stream) as ZoneContainer;
+            return serializer.Deserialize(stream) as LevelPack;
         }
     }
 
-    public static ZoneContainer LoadFromText(string text) 
+    public static LevelPack LoadFromText(string text) 
  	{
- 		var serializer = new XmlSerializer(typeof(ZoneContainer));
- 		return serializer.Deserialize(new StringReader(text)) as ZoneContainer;
+ 		var serializer = new XmlSerializer(typeof(LevelPack));
+ 		return serializer.Deserialize(new StringReader(text)) as LevelPack;
  	}
 }
 
 public class ProgressionManager : MonoBehaviour {
 
-	public TextAsset _originalGameData;
+	// ************ Singleton Logic ***************
+	public static ProgressionManager Instance;
+	void Awake() {
+		if (Instance) {
+			DestroyImmediate(gameObject);
+		} else {
+			DontDestroyOnLoad(gameObject);
+			Instance = this;
+			Initialize();
+		}
+	}
+	// ********************************************
 
-	private string levelPackName = "DefaultLevelPack";
+	[SerializeField] private string[] allLevelPackNames;
 
-	private ZoneContainer zones;
+	private string currentLevelPackName = "Default";
+	private const string saveDataSuffix = "_LevelPackZoneSaveData.xml";
+	private const string loadDataSuffix = "_LevelPackZoneLoadData";
+
+	private Dictionary<string,LevelPack> levelPackData = new Dictionary<string, LevelPack>();
 	private string nameOfCurrentZone = "Test Zone";
 
 	private bool shouldBeSavedFlag;
 	private bool statsShouldBeUpdatedFlag;
 
+	public LevelPack CurrentLevelPack {
+		get {
+			return getCurrentPack();
+		}
+	}
+
+	public Zone CurrentZone {
+		get {
+			return getCurrentPack().GetZone(nameOfCurrentZone);
+		}
+	}
+
+	public string CurrentLevelPackName {
+		get {
+			return currentLevelPackName;
+		}
+	}
+
+
+
+			// test garbage
+
+			public void LevelAcedTest() {
+
+				LevelAced(1, 2);
+			}
+
+			public void LevelCompletedTest() {
+
+				LevelCompleted(1, 3);
+			}
+
+			public static void GoToMusic () {
+
+				Application.LoadLevel(0);
+			}
+
+
+
 	// Use this for initialization
-	void Start () {
+	void Initialize () {
 
 		loadProgress();
 	}
 
+	public void SetCurrentLevelPack ( string levelPackName ) {
+
+		currentLevelPackName = levelPackName;
+	}
+
+	public void SetCurrentZone ( string zoneName ) {
+
+		nameOfCurrentZone = zoneName;
+	}
+
+	public string[] GetZoneNames () {
+		var names = new string[CurrentLevelPack.zones.Length];
+		for ( int i = 0; i < CurrentLevelPack.zones.Length; i++ ) {
+			names[i] = CurrentLevelPack.zones[i].Name;
+		}
+		return names;
+	}
+
 	public void LevelCompleted ( int levelID, int numberOfMoves ) {
 
-		Debug.Log("Level " + levelID + " Completed");
+		// Debug.Log("Level " + levelID + " Completed");
 		var level = getLevel(levelID);
 		if (level != null) {
 			setComplete(level);
@@ -165,7 +239,7 @@ public class ProgressionManager : MonoBehaviour {
 
 	public void LevelAced ( int levelID, int numberOfMoves ) {
 
-		Debug.Log("Level " + levelID + " Aced");
+		// Debug.Log("Level " + levelID + " Aced");
 		var level = getLevel(levelID);
 		if (level != null) {
 			setAced(level);
@@ -176,10 +250,22 @@ public class ProgressionManager : MonoBehaviour {
 
 	public void ResetAllProgress () {
 
-		zones = ZoneContainer.LoadFromText(_originalGameData.text);
-		saveProgress();
+		foreach (string s in allLevelPackNames) {
+			ResetProgress(s);
+		}
 	}
 
+	public void ResetProgress ( string levelPackName ) {
+
+		var originalData = Resources.Load<TextAsset>("Data/" + currentLevelPackName + loadDataSuffix);
+		levelPackData[levelPackName] = LevelPack.LoadFromText(originalData.text);
+		saveProgress();
+
+		Debug.Log("Reset Progress for " + levelPackName);
+	}
+
+
+	// private functions
 	private void setComplete ( Level level ) {
 
 		if ( !level.IsComplete ) {
@@ -221,7 +307,7 @@ public class ProgressionManager : MonoBehaviour {
 	private void commitChanges () {
 
 		if (statsShouldBeUpdatedFlag) {
-			zones.GetZone(nameOfCurrentZone).UpdateStats();
+			getCurrentPack().GetZone(nameOfCurrentZone).UpdateStats();
 		}
 		if (shouldBeSavedFlag) {
 			saveProgress();
@@ -242,9 +328,14 @@ public class ProgressionManager : MonoBehaviour {
 		}
 	}
 
+	private LevelPack getCurrentPack () {
+
+		return levelPackData[currentLevelPackName];
+	}
+
 	private Level getLevel ( int levelID ) {
 
-		var zone = zones.GetZone(nameOfCurrentZone);
+		var zone = getCurrentPack().GetZone(nameOfCurrentZone);
 		if (zone != null) {
 			var level = zone.GetLevel(levelID);
 			if (level != null) {
@@ -259,14 +350,25 @@ public class ProgressionManager : MonoBehaviour {
 
 	private void loadProgress () {
 
-		var pPath = Path.Combine(Application.persistentDataPath, levelPackName + ".xml");
-		zones = (File.Exists(pPath)) ? ZoneContainer.Load(pPath) : ZoneContainer.LoadFromText(_originalGameData.text);
+		foreach (string s in allLevelPackNames) {
+			loadPack(s);
+		}
+	}
 
-		zones.DebugOutput();
+	private void loadPack ( string packName ) {
+
+		var pPathSave = Path.Combine(Application.persistentDataPath, packName + saveDataSuffix);
+		var packData = (File.Exists(pPathSave)) ? LevelPack.Load(pPathSave) :
+				LevelPack.LoadFromText(Resources.Load<TextAsset>("Data/" + packName + loadDataSuffix).text);
+		levelPackData.Add(packName, packData);
+
+		// packData.DebugOutput();
 	}
 
 	private void saveProgress () {
 
-		zones.Save(Path.Combine(Application.persistentDataPath, levelPackName + ".xml"));
+		foreach (string s in allLevelPackNames) {
+			levelPackData[s].Save(Path.Combine(Application.persistentDataPath, s + saveDataSuffix));
+		}
 	}
 }
