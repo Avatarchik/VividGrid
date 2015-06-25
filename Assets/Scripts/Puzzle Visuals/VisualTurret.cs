@@ -16,6 +16,16 @@ public class VisualTurret : MonoBehaviour {
 
 	// prefabs
 	[SerializeField] private Object turretHead_prefab;
+	[SerializeField] private Object turretPort_prefab;
+
+	// sprites
+	[SerializeField] private Sprite turret_cw_90;
+	[SerializeField] private Sprite turret_ccw_90;
+	[SerializeField] private Sprite turret_180;
+	[SerializeField] private Sprite turret_static;
+	[SerializeField] private Sprite turret_spawner;
+	[SerializeField] private Sprite turret_receiver;
+	[SerializeField] private Sprite turret_port;
 
 	// components
 	private GameObject[] heads;
@@ -174,27 +184,35 @@ public class VisualTurret : MonoBehaviour {
 		switch (layout)
 		{
 		case Turret.Layout.Single:
-			heads = new GameObject[1];
+			heads = new GameObject[4];
 			spawnHead(Turret.Direction.Up, 0);
+			spawnPort(Turret.Direction.Right, 1);
+			spawnPort(Turret.Direction.Down, 2);
+			spawnPort(Turret.Direction.Left, 3);
 			break;
 
 		case Turret.Layout.Double_90:
-			heads = new GameObject[2];
+			heads = new GameObject[4];
 			spawnHead(Turret.Direction.Up, 0);
 			spawnHead(Turret.Direction.Right, 1);
+			spawnPort(Turret.Direction.Down, 2);
+			spawnPort(Turret.Direction.Left, 3);
 			break;
 			
 		case Turret.Layout.Double_180:
-			heads = new GameObject[2];
+			heads = new GameObject[4];
 			spawnHead(Turret.Direction.Up, 0);
-			spawnHead(Turret.Direction.Down, 1);
+			spawnPort(Turret.Direction.Right, 1);
+			spawnHead(Turret.Direction.Down, 2);
+			spawnPort(Turret.Direction.Left, 3);
 			break;
 			
 		case Turret.Layout.Triple:
-			heads = new GameObject[3];
+			heads = new GameObject[4];
 			spawnHead(Turret.Direction.Up, 0);
 			spawnHead(Turret.Direction.Right, 1);
 			spawnHead(Turret.Direction.Down, 2);
+			spawnPort(Turret.Direction.Left, 3);
 			break;
 			
 		case Turret.Layout.Receiver:
@@ -242,18 +260,53 @@ public class VisualTurret : MonoBehaviour {
 		heads[id] = head;
 	}
 
+	private void spawnPort ( Turret.Direction direction, int id ) {
+
+		// create a port object
+		var port = (GameObject)Instantiate(turretPort_prefab);
+		port.name = "Turret Port";
+
+		// set its anchor
+		switch (direction)
+		{
+		case Turret.Direction.Up:
+			port.transform.parent = _upAnchor;
+			break;
+
+		case Turret.Direction.Right:
+			port.transform.parent = _rightAnchor;
+			break;
+
+		case Turret.Direction.Down:
+			port.transform.parent = _downAnchor;
+			break;
+
+		case Turret.Direction.Left:
+			port.transform.parent = _leftAnchor;
+			break;
+		}
+
+		// set transform
+		port.transform.localScale = Vector3.one;
+		port.transform.localPosition = Vector3.zero;
+		port.transform.localRotation = Quaternion.identity;
+
+		// save reference
+		heads[id] = port;
+	}
+
 	private void setType ( Turret.Type type ) {
 
 		switch (type)
 		{
 			case Turret.Type.Spawner:
-				_sprite.color = Color.yellow;
-				setHeadColor(Color.yellow);
+				_sprite.sprite = turret_spawner;
+				setHeadColor(Color.white);
 				break;
 				
 			case Turret.Type.Receiver:
-				_sprite.color = Color.black;
-				setHeadColor(Color.black);
+				_sprite.sprite = turret_receiver;
+				setHeadColor(Color.white);
 				break;
 		}
 	}
@@ -262,28 +315,20 @@ public class VisualTurret : MonoBehaviour {
 		switch (rotation)
 		{
 			case Turret.Rotation.CW_90:
-				_sprite.color = Color.red;
-				setHeadColor(Color.red);
+				_sprite.sprite = turret_cw_90;
 				break;
 
 			case Turret.Rotation.CCW_90:
-				_sprite.color = Color.green;
-				setHeadColor(Color.green);
+				_sprite.sprite = turret_ccw_90;
 				break;
 			
 			case Turret.Rotation.CW_180:
-				_sprite.color = Color.blue;
-				setHeadColor(Color.blue);
-				break;
-				
 			case Turret.Rotation.CCW_180:
-				_sprite.color = Color.blue;
-				setHeadColor(Color.blue);
+				_sprite.sprite = turret_180;
 				break;
 				
 			case Turret.Rotation.Static:
-				_sprite.color = Color.grey;
-				setHeadColor(Color.grey);
+				_sprite.sprite = turret_static;
 				break;
 		}
 	}
@@ -291,7 +336,7 @@ public class VisualTurret : MonoBehaviour {
 	private void setHeadColor ( Color color ) {
 
 		foreach (GameObject head in heads) {
-			head.GetComponent<SpriteRenderer>().color = color;
+			// head.GetComponent<SpriteRenderer>().color = color;
 		}
 	}
 

@@ -30,12 +30,22 @@ public class GridLine {
 }
 
 [RequireComponent(typeof(VisualGrid))]
+[RequireComponent(typeof(MoveManager))]
 public class PuzzleGrid : MonoBehaviour {
 
 	public int _numColumns = 7;
 	public int _numRows = 13;
 
-	public int _levelID;
+	public CompletionScreen completionScreen;
+
+	public bool debug;
+	public string debugLevelPackName;
+	public string debugZoneName;
+	public int debugLevelID;
+
+	private string _levelPackName;
+	private string _zoneName;
+	private int _levelID;
 
 	private bool _isRotating;
 
@@ -48,11 +58,26 @@ public class PuzzleGrid : MonoBehaviour {
 	private List<int> resolvingTurretIDs;
 
 	private VisualGrid _visual;
+	private MoveManager _moves;
 
+	public MoveManager Moves {
+		get {
+			return _moves;
+		}
+	}
 
 	// Use this for initialization
 	public void Start () {
 
+		if (!debug) {
+
+			// get the selected level
+			var progManager = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
+
+			_levelPackName = progManager.CurrentLevelPackName;
+			_zoneName = progManager.CurrentZone.Name;
+			_levelID = progManager.selectedLevel;
+		}
 		// initialize grid lines
 		columns = new GridLine[_numColumns];
 		rows = new GridLine[_numRows];
@@ -72,6 +97,9 @@ public class PuzzleGrid : MonoBehaviour {
 		// initialize properties
 		resolvingTurretIDs = new List<int>();
 
+		// get move manager
+		_moves = GetComponent<MoveManager>();
+
 		// set up the visual grid
 		_visual = GetComponent<VisualGrid>();
 		_visual.SetUpGrid();
@@ -81,16 +109,45 @@ public class PuzzleGrid : MonoBehaviour {
 	}
 
 	public void ActivateColumn ( int i ) {
+
 		Debug.Log("Column Rotated at Index " + i);
-		ActivateGridLine(GridLine.Type.Column, i);
+		_moves.RegisterMove(GridLine.Type.Column, i);
+		ActivateGridLine(GridLine.Type.Column, i, false);
+
 	}
 
 	public void ActivateRow ( int i ) {
+
 		Debug.Log("Row Rotated at Index " + i);
-		ActivateGridLine(GridLine.Type.Row, i);
+		_moves.RegisterMove(GridLine.Type.Row, i);
+		ActivateGridLine(GridLine.Type.Row, i, false);
 	}
 
-	public void ActivateGridLine ( GridLine.Type type, int index ) {
+	public void RedoColumn ( int i ) {
+		
+		Debug.Log("Column Rotated at Index " + i);
+		ActivateGridLine(GridLine.Type.Column, i, false);
+	}
+
+	public void RedoRow ( int i ) {
+		
+		Debug.Log("Row Rotated at Index " + i);
+		ActivateGridLine(GridLine.Type.Row, i, false);
+	}
+
+	public void UndoColumn ( int i ) {
+
+		Debug.Log("Column Undone at Index " + i);
+		ActivateGridLine(GridLine.Type.Column, i, true);
+	}
+
+	public void UndoRow ( int i ) {
+
+		Debug.Log("Row Undone at Index " + i);
+		ActivateGridLine(GridLine.Type.Row, i, true);
+	}
+
+	public void ActivateGridLine ( GridLine.Type type, int index, bool undo ) {
 
 		// get turret IDs
 		var turretIDs = new int[0];
@@ -108,7 +165,11 @@ public class PuzzleGrid : MonoBehaviour {
 		// tell turrets to rotate
 		foreach (int id in turretIDs) {
 			resolvingTurretIDs.Add(id);
-			turrets[id].Rotate();
+			if (undo) {
+				turrets[id].UndoRotate();
+			} else {
+				turrets[id].Rotate();
+			}
 		}
 
 		_isRotating = true;
@@ -138,14 +199,13 @@ public class PuzzleGrid : MonoBehaviour {
 
 	public void LoadLayout () {
 
-
-		// var filepath = Application.dataPath + "/Data/Levels/level" + _levelID + ".vgl";
-
 		// get ready to load file
 		var turretCommands = new List<string>();
 
 		// load level asset and convert to bytestream
-		var levelInfo = Resources.Load<TextAsset>("Levels/level" + _levelID);
+		var path = "Levels/" + _levelPackName + "/" + _zoneName + "/" + "level" + _levelID;
+		if (debug) { path = "Levels/" + debugLevelPackName + "/" + debugZoneName + "/" + "level" + debugLevelID; }
+		var levelInfo = Resources.Load<TextAsset>(path);
 		var byteStream = new MemoryStream(levelInfo.bytes);
 
 		// load file into strings
@@ -280,9 +340,11 @@ public class PuzzleGrid : MonoBehaviour {
 		}
 	}
 
+
 	// private functions
 	private void levelComplete () {
 
+		completionScreen.Present();
 		Debug.Log("Level Complete");
 	}
 

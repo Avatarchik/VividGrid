@@ -47,6 +47,19 @@ public class LevelSelectManager : MonoBehaviour {
 		}
 	}
 
+	public void LevelSelected ( int levelID ) {
+		_progressionManager.selectedLevel = levelID;
+		moveToLevel();
+	}
+
+	public void LevelUnselected ( int levelID ) {
+
+	}
+
+	private void moveToLevel () {
+		Application.LoadLevel(1);
+	}
+
 	private int getIndexForZoneName( string zoneName ) {
 
 		for (int i = 0; i < levelPackZoneNames.Length; i++) {

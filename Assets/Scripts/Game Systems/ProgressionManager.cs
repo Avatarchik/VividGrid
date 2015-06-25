@@ -163,6 +163,8 @@ public class ProgressionManager : MonoBehaviour {
 	private bool shouldBeSavedFlag;
 	private bool statsShouldBeUpdatedFlag;
 
+	public int selectedLevel = -1;
+
 	public LevelPack CurrentLevelPack {
 		get {
 			return getCurrentPack();
@@ -362,6 +364,9 @@ public class ProgressionManager : MonoBehaviour {
 				LevelPack.LoadFromText(Resources.Load<TextAsset>("Data/" + packName + loadDataSuffix).text);
 		levelPackData.Add(packName, packData);
 
+		// select the default zone
+		nameOfCurrentZone = CurrentLevelPack.DefaultZoneName;
+		
 		// packData.DebugOutput();
 	}
 

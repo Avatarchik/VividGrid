@@ -4,16 +4,280 @@
 		"selected_items":
 		[
 			[
+				"p",
+				"Push(T item)	void"
+			],
+			[
+				"P",
+				"Push(T item)	void"
+			],
+			[
+				"CC",
+				"CCW_90	Rotation"
+			],
+			[
+				"Rot",
+				"Rotation	Rotation"
+			],
+			[
+				"c",
+				"Count	int { get; }"
+			],
+			[
+				"fade",
+				"fadeOut()	IEnumerator"
+			],
+			[
+				"debu",
+				"debugLevelID	int"
+			],
+			[
+				"debug",
+				"debugZoneName	string"
+			],
+			[
+				"z",
+				"CurrentZone	Zone { get; }"
+			],
+			[
+				"Curr",
+				"CurrentLevelPackName	string { get; }"
+			],
+			[
+				"_level",
+				"_levelPackName	string"
+			],
+			[
+				"level",
+				"levelID	int"
+			],
+			[
+				"progr",
+				"_progressionManager	ProgressionManager"
+			],
+			[
+				"levelSele",
+				"LevelSelectManager	LevelSelectManager"
+			],
+			[
+				"ver",
+				"verticalNormalizedPosition	float { get; set; }"
+			],
+			[
+				"Scro",
+				"ScrollRect	ScrollRect"
+			],
+			[
+				"Leve",
+				"LevelSelectZone	LevelSelectZone"
+			],
+			[
+				"Zone",
+				"LevelSelectZone	LevelSelectZone"
+			],
+			[
+				"Current",
+				"CurrentLevelPack	LevelPack { get; }"
+			],
+			[
+				"current",
+				"getCurrentPack()	LevelPack"
+			],
+			[
+				"Level",
+				"LevelPack	LevelPack"
+			],
+			[
+				"SetC",
+				"SetCurrentLevelPack(string levelPackName)	void"
+			],
+			[
+				"curr",
+				"nameOfCurrentZone	string"
+			],
+			[
+				"Reset",
+				"ResetProgress(string levelPackName)	void"
+			],
+			[
+				"load",
+				"loadPack(string packName)	void"
+			],
+			[
+				"Load",
+				"Load<T>(string path)	T"
+			],
+			[
+				"LevelAce",
+				"LevelAced(int levelID, int numberOfMoves)	void"
+			],
+			[
+				"next",
+				"nextClip	AudioClip"
+			],
+			[
+				"cr",
+				"crossfader	AudioSource"
+			],
+			[
+				"cross",
+				"crossfader	AudioSource"
+			],
+			[
+				"cros",
+				"crossfade()	IEnumerator"
+			],
+			[
+				"Stop",
+				"StopCoroutine(string methodName)	void"
+			],
+			[
+				"for",
+				"foreach	foreach"
+			],
+			[
+				"Unl",
+				"UnloadAsset(Object assetToUnload)	void"
+			],
+			[
+				"Enter",
+				"EnterLevel(int levelID)	void"
+			],
+			[
+				"Set",
+				"SetInitialClip(AudioClip clip)	void"
+			],
+			[
+				"trans",
+				"transition(AudioClip nextClip)	IEnumerator"
+			],
+			[
+				"nex",
+				"nextSong	Song"
+			],
+			[
+				"IE",
+				"IEnumerator	IEnumerator"
+			],
+			[
+				"Get",
+				"GetCurrentMenuClip()	AudioClip"
+			],
+			[
+				"new",
+				"newClip	AudioClip"
+			],
+			[
+				"IEN",
+				"IEnumerator<	IEnumerator<"
+			],
+			[
+				"IEnumer",
+				"IEnumerator<	IEnumerator<"
+			],
+			[
+				"defaul",
+				"defaultSong	string"
+			],
+			[
+				"audio",
+				"audioPlayer	AudioSource"
+			],
+			[
+				"L",
+				"Load<T>(string path)	T"
+			],
+			[
+				"Dic",
+				"Dictionary<TKey, TValue>(int capacity)	Dictionary(int capacity)"
+			],
+			[
+				"To",
+				"ToString(string format)	string"
+			],
+			[
+				"Res",
+				"Resources	Resources"
+			],
+			[
+				"get",
+				"GetZone(string name)	Zone"
+			],
+			[
+				"Comple",
+				"CompletionPercentage	float"
+			],
+			[
+				"is",
+				"IsComplete	bool"
+			],
+			[
+				"XmlArray",
+				"XmlArrayItemAttribute	XmlArrayItemAttribute"
+			],
+			[
+				"Is",
+				"IsUnlocked	bool"
+			],
+			[
+				"this",
+				"thisLevel	Level"
+			],
+			[
+				"byte",
+				"byteStream	MemoryStream"
+			],
+			[
+				"Memor",
+				"MemoryStream(byte[] buffer)	MemoryStream(byte[] buffer)"
+			],
+			[
+				"name",
+				"nameOfCurrentZone	string"
+			],
+			[
+				"leve",
+				"LevelID	int"
+			],
+			[
+				"Com",
+				"Combine(string path1, string path2)	string"
+			],
+			[
+				"XMlArray",
+				"XmlArrayItemAttribute	XmlArrayItemAttribute"
+			],
+			[
+				"Sele",
+				"SelectSingleNode(string xpath)	XmlNode"
+			],
+			[
+				"file",
+				"filepath	string"
+			],
+			[
+				"XMl",
+				"XmlDocument()	XmlDocument()"
+			],
+			[
+				"XML",
+				"XmlDocument	XmlDocument"
+			],
+			[
+				"S",
+				"SocialPlatforms	SocialPlatforms"
+			],
+			[
+				"Uni",
+				"UnityEngine	UnityEngine"
+			],
+			[
 				"tar",
 				"_targetScore	int"
 			],
 			[
 				"Range",
 				"Range(int min, int max)	int"
-			],
-			[
-				"new",
-				"newScale	float"
 			],
 			[
 				"base",
@@ -80,10 +344,6 @@
 				"LeanTween	LeanTween"
 			],
 			[
-				"audio",
-				"audioFadeHelper(float val)	void"
-			],
-			[
 				"vale",
 				"value(GameObject gameObject, Action<float> callOnUpdate, float from, float to, float time)	LTDescr"
 			],
@@ -144,10 +404,6 @@
 				"PresentSettings()	void"
 			],
 			[
-				"IEN",
-				"IEnumerator	IEnumerator"
-			],
-			[
 				"Ien",
 				"IEnumerator	IEnumerator"
 			],
@@ -184,10 +440,6 @@
 				"selectedCharacter	CharacterName"
 			],
 			[
-				"is",
-				"isSwapping	bool"
-			],
-			[
 				"play",
 				"Play()	void"
 			],
@@ -220,10 +472,6 @@
 				"SpriteRenderer	SpriteRenderer"
 			],
 			[
-				"c",
-				"case	case"
-			],
-			[
 				"_jum",
 				"_jumpUp	AudioSource"
 			],
@@ -240,10 +488,6 @@
 				"DEBUG	bool"
 			],
 			[
-				"Get",
-				"GetInt(string key, int defaultValue)	int"
-			],
-			[
 				"UI",
 				"UnityEngine	UnityEngine"
 			],
@@ -254,10 +498,6 @@
 			[
 				"Player",
 				"PlayerPrefs	PlayerPrefs"
-			],
-			[
-				"Load",
-				"LoadLevel(int index)	void"
 			],
 			[
 				"alp",
@@ -274,259 +514,40 @@
 			[
 				"shae",
 				"shakeMagnitude	float"
-			],
-			[
-				"_",
-				"_particleID	int"
-			],
-			[
-				"Energy",
-				"EnergyParticle	EnergyParticle"
-			],
-			[
-				"loc",
-				"localPosition	Vector3 { get; set; }"
-			],
-			[
-				"po",
-				"position	Vector2"
-			],
-			[
-				"coll",
-				"collectMod	float"
-			],
-			[
-				"_target",
-				"_targetScale	Vector3"
-			],
-			[
-				"Vec",
-				"Vector3	Vector3"
-			],
-			[
-				"local",
-				"localPosition	Vector3 { get; set; }"
-			],
-			[
-				"_tar",
-				"_targetScale	Vector3"
-			],
-			[
-				"Vect",
-				"Vector3	Vector3"
-			],
-			[
-				"l",
-				"Lerp(Vector3 from, Vector3 to, float t)	Vector3"
-			],
-			[
-				"Energ",
-				"EnergyParticleState	EnergyParticleState"
-			],
-			[
-				"col",
-				"color	Color { get; set; }"
-			],
-			[
-				"retic",
-				"_reticleBar	Image"
-			],
-			[
-				"Uin",
-				"UnityEngine	UnityEngine"
-			],
-			[
-				"co",
-				"color	Color { get; set; }"
-			],
-			[
-				"R",
-				"Range(int min, int max)	int"
-			],
-			[
-				"layout",
-				"layoutDataPool	WhaleNodeLayoutData[]"
-			],
-			[
-				"Clamp",
-				"Clamp(float value, float min, float max)	float"
-			],
-			[
-				"v",
-				"void	void"
-			],
-			[
-				"ac",
-				"activateParticle(object particle)	void"
-			],
-			[
-				"setOnComple",
-				"setOnComplete(Action<object> onComplete, object onCompleteParam)	LTDescr"
-			],
-			[
-				"setOn",
-				"setOnComplete(Action<object> onComplete)	LTDescr"
-			],
-			[
-				"re",
-				"RemoveMyslef()	void"
-			],
-			[
-				"cancel",
-				"cancel(GameObject gameObject)	void"
-			],
-			[
-				"moveY",
-				"moveLocalY(GameObject gameObject, float to, float time)	LTDescr"
-			],
-			[
-				"sor",
-				"sortingOrder	int { get; set; }"
-			],
-			[
-				"loca",
-				"localPosition	Vector3 { get; set; }"
-			],
-			[
-				"V",
-				"HasValue	bool { get; }"
-			],
-			[
-				"Create",
-				"CreateEnergyBurst(Vector2 position, int numParticles, int layerID, int layerOrder)	void"
-			],
-			[
-				"cur",
-				"currentTouchWorld()	Vector2?"
-			],
-			[
-				"lay",
-				"layerOrder	int"
-			],
-			[
-				"sortin",
-				"sortingLayerID	int { get; set; }"
-			],
-			[
-				"camer",
-				"cameraMovementBoundsPos	float"
-			],
-			[
-				"ro",
-				"restingAnchor	Transform"
-			],
-			[
-				"canc",
-				"cancel(GameObject gameObject)	void"
-			],
-			[
-				"for",
-				"foreach	foreach"
-			],
-			[
-				"easout",
-				"easeOutBounce	LeanTweenType"
-			],
-			[
-				"Audio",
-				"AudioSource	AudioSource"
-			],
-			[
-				"pl",
-				"Play()	void"
-			],
-			[
-				"Ser",
-				"SerializeField"
-			],
-			[
-				"whale",
-				"whalePrefab2	GameObject"
-			],
-			[
-				"h",
-				"highScore	int"
-			],
-			[
-				"ty",
-				"typeof	typeof"
-			],
-			[
-				"Sa",
-				"SetInt(string key, int value)	void"
-			],
-			[
-				"Pla",
-				"PlayerPrefs	PlayerPrefs"
-			],
-			[
-				"overr",
-				"overruled"
-			],
-			[
-				"Lew",
-				"LeanTweenType	LeanTweenType"
-			],
-			[
-				"IEn",
-				"IEnumerator	IEnumerator"
-			],
-			[
-				"WhaleSp",
-				"WhaleSpawnManager	WhaleSpawnManager"
-			],
-			[
-				"_ski",
-				"_skill2	EquippedSkill"
-			],
-			[
-				"_is",
-				"_isSelected	bool"
-			],
-			[
-				"Gr",
-				"green	Color { get; }"
-			],
-			[
-				"Equp",
-				"EquippedSkill	EquippedSkill"
-			],
-			[
-				"Skill",
-				"SkillData	SkillData"
-			],
-			[
-				"S",
-				"System	System"
-			],
-			[
-				"Custom",
-				"CustomAssetUtility	CustomAssetUtility"
-			],
-			[
-				"Crea",
-				"CreateAsset"
-			],
-			[
-				"Ki",
-				"kioskModeEnabled	bool"
-			],
-			[
-				"delta",
-				"deltaTime	float { get; }"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "using UnityEngine;\nusing System.Collections.Generic;\nusing System.IO;\nusing System;\n\npublic class GridLine {\n\n	public enum Type {\n		Column = 0,\n		Row\n	}\n\n	// private int _index;\n	// private Type _type;\n\n	private readonly List<int> _turretIDs = new List<int>();\n\n	public void SetUpLine(int i, Type type) {\n		// _index = i;\n		// _type = type;\n	}\n\n	public void AddNewTurret (int turretID) {\n		_turretIDs.Add(turretID);\n	}\n\n	public int[] GetTurretIDs () {\n		return _turretIDs.ToArray();\n	}\n}\n\n[RequireComponent(typeof(VisualGrid))]\npublic class PuzzleGrid : MonoBehaviour {\n\n	public int _numColumns = 7;\n	public int _numRows = 13;\n\n	public int _levelID;\n\n	private bool _isRotating;\n\n	private GridLine[] columns;\n	private GridLine[] rows;\n	private Turret[] turrets;\n\n	private int[] spawnerTurretIDs;\n	private int[] receiverTurretIDs;\n	private List<int> resolvingTurretIDs;\n\n	private VisualGrid _visual;\n\n\n	// Use this for initialization\n	public void Start () {\n\n		// initialize grid lines\n		columns = new GridLine[_numColumns];\n		rows = new GridLine[_numRows];\n\n		for (int i = 1; i < _numColumns+1; i++) {\n			var col = new GridLine();\n			col.SetUpLine(i, GridLine.Type.Column);\n			columns[i-1] = col;\n		}\n\n		for (int i = 1; i < _numRows+1; i++) {\n			var row = new GridLine();\n			row.SetUpLine(i, GridLine.Type.Row);\n			rows[i-1] = row;\n		}\n\n		// initialize properties\n		resolvingTurretIDs = new List<int>();\n\n		// set up the visual grid\n		_visual = GetComponent<VisualGrid>();\n		_visual.SetUpGrid();\n		_visual.SetUpButtons();\n\n		LoadLayout();\n	}\n\n	public void ActivateColumn ( int i ) {\n		Debug.Log(\"Column Rotated at Index \" + i);\n		ActivateGridLine(GridLine.Type.Column, i);\n	}\n\n	public void ActivateRow ( int i ) {\n		Debug.Log(\"Row Rotated at Index \" + i);\n		ActivateGridLine(GridLine.Type.Row, i);\n	}\n\n	public void ActivateGridLine ( GridLine.Type type, int index ) {\n\n		// get turret IDs\n		var turretIDs = new int[0];\n		switch (type)\n		{\n			case GridLine.Type.Column:\n				turretIDs = columns[index-1].GetTurretIDs();\n				break;\n\n			case GridLine.Type.Row:\n				turretIDs = rows[index-1].GetTurretIDs();\n				break;\n		}\n\n		// tell turrets to rotate\n		foreach (int id in turretIDs) {\n			resolvingTurretIDs.Add(id);\n			turrets[id].Rotate();\n		}\n\n		_isRotating = true;\n		_visual.DisableRotation();\n	}\n\n	public void ResolveRotation ( int id ) {\n\n		// remove \n		if ( !resolvingTurretIDs.Remove( id ) ) {\n			Debug.Log(\"Tried to resolve rotation that doesn't exist!\");\n		}\n\n		// if all rotations are resolved update\n		if ( resolvingTurretIDs.Count == 0 ) {\n\n			Debug.Log(\"Resolving rotation...\");\n\n			// resolve new beam path\n			SendUpdatePulse();\n\n			// reenable rotations\n			_isRotating = false;\n			_visual.EnableRotation();\n		}\n	}\n\n	public void LoadLayout () {\n\n		// get ready to load file\n		var turretCommands = new List<string>();\n		var filepath = Application.dataPath + \"/Data/Levels/level\" + _levelID + \".vgl\";\n\n		// load file into strings\n		var reader = new  StreamReader(filepath);\n        try {\n            do {\n                turretCommands.Add(reader.ReadLine());\n            } while(reader.Peek() != -1);\n        } catch {\n            Debug.Log(\"Level File is empty\");\n        } finally {\n            reader.Close();\n        }\n\n        // \n        int numTurrets = turretCommands.Count;\n        turrets = new Turret[numTurrets];\n\n        // prime visuals\n        _visual.PrimeTurretArray(numTurrets);\n\n        // extract turret info and create them\n        int turretID = 0;\n        char[] delimiters = {','};\n        var spawners  = new List<int>();\n        var receviers = new List<int>();\n\n        foreach (string command in turretCommands) {\n\n        	string[] commands = command.Split(delimiters);\n\n        	int col = int.Parse(commands[0]);\n        	int row = int.Parse(commands[1]);\n        	var type = (Turret.Type) Enum.Parse(typeof(Turret.Type), commands[2]);\n        	var rotation = (Turret.Rotation) Enum.Parse(typeof(Turret.Rotation), commands[3]);\n        	var layout = (Turret.Layout) Enum.Parse(typeof(Turret.Layout), commands[4]);\n        	var direction = (Turret.Direction) Enum.Parse(typeof(Turret.Direction), commands[5]);\n\n        	if ( type == Turret.Type.Spawner ) {\n        		spawners.Add(turretID);\n        	} else if ( type == Turret.Type.Receiver ) {\n        		receviers.Add(turretID);\n        	}\n\n        	createTurret(turretID, col, row, type, rotation, layout, direction);\n        	turretID++;\n        }\n\n        // save spawner turrets\n        spawnerTurretIDs = new int[spawners.Count];\n        spawnerTurretIDs = spawners.ToArray();\n\n        receiverTurretIDs = new int[receviers.Count];\n        receiverTurretIDs = receviers.ToArray();\n\n		layoutTurrets();\n	}\n\n	public void InitializeBeam () {\n\n		foreach (int id in spawnerTurretIDs) {\n			turrets[id].PowerOn();\n		}\n	}\n\n	public void SendUpdatePulse () {\n\n		// make each spawner pulse\n		foreach (int id in spawnerTurretIDs) {\n			turrets[id].SendUpdatePulse();\n		}\n\n		// check if all receivers are on\n		foreach (int id in receiverTurretIDs) { \n			if ( turrets[id]._status == Turret.Status.PoweredOff ) {\n				return;\n			}\n		}\n\n		levelComplete ();\n	}\n\n	public Turret NextTurret ( int id, int col, int row, Turret.Direction direction ) {\n\n		switch (direction)\n		{\n		case Turret.Direction.Up:\n			for ( int i = row-1; i >= 1; i-- ) {\n				var nextID = getTurretID(col, i);\n				if ( nextID.HasValue ) {\n					return turrets[nextID.Value];\n				}\n			}\n			break;\n\n		case Turret.Direction.Down:\n			for ( int i = row+1; i <= _numRows; i++ ) {\n				var nextID = getTurretID(col, i);\n				if ( nextID.HasValue ) {\n					return turrets[nextID.Value];\n				}\n			}\n			break;\n\n		case Turret.Direction.Left:\n			for ( int i = col-1; i >= 1; i-- ) {\n				var nextID = getTurretID(i, row);\n				if ( nextID.HasValue ) {\n					return turrets[nextID.Value];\n				}\n			}\n			break;\n\n		case Turret.Direction.Right:\n			for ( int i = col+1; i <= _numColumns; i++ ) {\n				var nextID = getTurretID(i, row);\n				if ( nextID.HasValue ) {\n					return turrets[nextID.Value];\n				}\n			}\n			break;\n		}\n		return null;\n	}\n\n	public void ResetGrid () {\n\n		Debug.Log(\"Resetting Grid\");\n		foreach (Turret turret in turrets) {\n			resolvingTurretIDs.Add(turret._id);\n			turret.Reset();\n		}\n	}\n\n	// private functions\n	private void levelComplete () {\n\n		Debug.Log(\"Level Complete\");\n	}\n\n	private void layoutTurrets () {\n		foreach (Turret t in turrets) {\n			var r = t._row;\n			var c = t._col;\n			var v = t.GetComponent<VisualTurret>();\n			var pos = _visual.GetPositionFor(c, r);\n			v.SetPosition(pos);\n		}\n\n		InitializeBeam();\n	}\n\n	private void createTurret ( int turretID, int col, int row, Turret.Type type, Turret.Rotation rotation, Turret.Layout layout, Turret.Direction initialDirection ) {\n		\n		// create a turret, initilize it, and save it\n		var turretObject = _visual.CreateTurret(turretID);\n\n		var turret = turretObject.GetComponent<Turret>();\n		turret.Initialize(turretID, col, row, this, type, rotation, layout, initialDirection);\n		turrets[turretID] = turret;\n		\n		// let the rows/cols know about it\n		columns[col-1].AddNewTurret(turretID);\n		rows[row-1].AddNewTurret(turretID);\n	}\n\n	private int? getTurretID ( int col, int row ) {\n		var column = columns[col-1];\n		var ids = column.GetTurretIDs();\n		foreach (int id in ids) {\n			var turret = turrets[id];\n			if (turret._row == row) {\n				return id;\n			}\n		}\n		return null;\n	}\n}\n",
-			"file": "Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
-			"file_size": 7371,
-			"file_write_time": 130789516320000000,
+			"file": "Assets/Scripts/Puzzle Visuals/CompletionScreen.cs",
 			"settings":
 			{
-				"buffer_size": 7368,
+				"buffer_size": 1023,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
+			"settings":
+			{
+				"buffer_size": 8892,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Puzzle Logic/Turret.cs",
+			"settings":
+			{
+				"buffer_size": 10602,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Puzzle Logic/MoveManager.cs",
+			"settings":
+			{
+				"buffer_size": 1282,
 				"line_ending": "Unix"
 			}
 		}
@@ -595,10 +616,48 @@
 		"/Users/jak/Documents/Unity/Vivid Grid",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic"
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals"
 	],
 	"file_history":
 	[
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/VisualTurret.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/VisualGrid.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Data/Default_LevelPackZoneLoadData.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectIcon.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectZone.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/ProgressionManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level8.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level7.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level6.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level5.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level4.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level3.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level2.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level1.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/MusicManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectDragManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Data/VGM_LevelPackZoneLoadData.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/SortingLayerExposed.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Editor/SortingLayerExposedEditor.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Editor/MeshRendererSortingLayersEditor.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/UI Elements/LevelSelectIcon.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/LevelSelectManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/VGM_LevelPackZoneData.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/Default_LevelPackZoneData.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/DefaultLevelPackZoneData.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/DefaultLevelPackZoneData 1.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/Singletons.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/Turret.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/Utilities.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/Zones.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/Zones/zones.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/Levels/zones.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/AchievementManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/VividGrid.sublime-project",
 		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Entity Scripts/Whales/WhaleNodeLayout.cs",
 		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Entity Scripts/Whales/LockNode.cs",
 		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Scene Scripts/Gameplay/Scoring/ScoreManager.cs",
@@ -690,7 +749,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -704,6 +763,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"currentLevelPackName",
+			"levelPackName",
+			"crossfade()",
 			"hit",
 			"_energy",
 			"_dismissButton.enabled",
@@ -731,36 +793,148 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
+					"file": "Assets/Scripts/Puzzle Visuals/CompletionScreen.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7368,
+						"buffer_size": 1023,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								201,
-								201
+								364,
+								364
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"oops":
+							{
+								"176,180": "Name should have prefix '_'. (Rule 'Fields').",
+								"195,207": "Name should have prefix '_'. (Rule 'Fields').",
+								"502,516": "Method 'ReturnMainMenu' can be made static."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8892,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								488,
+								488
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1163,1174": "'MoveManager' is not a known identifier",
+								"553,564": "'MoveManager' is not a known identifier"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 194.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Scripts/Puzzle Logic/Turret.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10602,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8093,
+								7768
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"1981,1983": "Convert to 'return' statement",
+								"4847,4849": "Parameter can be IComparable",
+								"4855,4858": "Parameter can be IComparable",
+								"4864,4867": "Parameter can be IComparable",
+								"6911,6928": "Method 'GetLocalDirection' can be made static.",
+								"7238,7255": "Method 'GetWorldDirection' can be made static.",
+								"7565,7578": "Method 'FlipDirection' can be made static.",
+								"7785,7800": "Method 'ReverseRotation' can be made static."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5199.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Assets/Scripts/Puzzle Logic/MoveManager.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								597,
+								597
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"121,134": "Convert to readonly"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 247.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -851,7 +1025,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 260.0,
+	"side_bar_width": 297.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

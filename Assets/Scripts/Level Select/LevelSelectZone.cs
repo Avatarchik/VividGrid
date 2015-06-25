@@ -4,14 +4,9 @@ using System.Collections;
 public class LevelSelectZone : MonoBehaviour {
 
 	public string zoneName;
+	public LevelSelectManager levelSelectManager;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void LevelWasSelected ( int levelID ) {
+		levelSelectManager.LevelSelected(levelID);
 	}
 }

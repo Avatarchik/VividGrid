@@ -1,9 +1,9 @@
 <ZoneCollection>
-	<DefaultZoneName>Test Zone</DefaultZoneName>
+	<DefaultZoneName>Zone1</DefaultZoneName>
 	<Zones>
-		<Zone Name="Test Zone">
+		<Zone Name="Zone1">
 			<!--  Zone Stats -->
-			<TotalLevels>2</TotalLevels>
+			<TotalLevels>8</TotalLevels>
 			<CompletedLevels>0</CompletedLevels>
 			<CompletionPercentage>0.0</CompletionPercentage>
 			<!-- /Zone Stats -->
@@ -14,7 +14,7 @@
 					<IsUnlocked>true</IsUnlocked>
 					<IsComplete>false</IsComplete>
 					<IsAced>false</IsAced>
-					<RequiredMoves>1</RequiredMoves>
+					<RequiredMoves>2</RequiredMoves>
 					<BestMoves>-1</BestMoves>
 				</Level>
 				<Level>
@@ -24,6 +24,60 @@
 					<IsComplete>false</IsComplete>
 					<IsAced>false</IsAced>
 					<RequiredMoves>2</RequiredMoves>
+					<BestMoves>-1</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>3</LevelID>
+					<NextLevelID>4</NextLevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>3</RequiredMoves>
+					<BestMoves>-1</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>4</LevelID>
+					<NextLevelID>5</NextLevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>3</RequiredMoves>
+					<BestMoves>-1</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>5</LevelID>
+					<NextLevelID>6</NextLevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>2</RequiredMoves>
+					<BestMoves>-1</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>6</LevelID>
+					<NextLevelID>7</NextLevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>3</RequiredMoves>
+					<BestMoves>-1</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>7</LevelID>
+					<NextLevelID>8</NextLevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>4</RequiredMoves>
+					<BestMoves>-1</BestMoves>
+				</Level>
+				<Level>
+					<LevelID>8</LevelID>
+					<NextLevelID>-1</NextLevelID>
+					<IsUnlocked>false</IsUnlocked>
+					<IsComplete>false</IsComplete>
+					<IsAced>false</IsAced>
+					<RequiredMoves>4</RequiredMoves>
 					<BestMoves>-1</BestMoves>
 				</Level>
 			</Levels>

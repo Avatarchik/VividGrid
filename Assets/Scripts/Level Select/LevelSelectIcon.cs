@@ -5,6 +5,8 @@ public class LevelSelectIcon : MonoBehaviour {
 
 	private LevelSelectZone _zone;
 
+	public TextAsset levelData;
+
 	public int levelID_ref;
 	public LevelSelectZone Zone { get { return _zone; } }
 
@@ -13,6 +15,7 @@ public class LevelSelectIcon : MonoBehaviour {
 	}
 
 	public void ButtonPressed () {
-		Debug.Log("Level Selected at " + Zone.zoneName + " " + levelID_ref);
+		Zone.LevelWasSelected(levelID_ref);
+		// Debug.Log("Level Selected at " + Zone.zoneName + " " + levelID_ref);
 	}
 }

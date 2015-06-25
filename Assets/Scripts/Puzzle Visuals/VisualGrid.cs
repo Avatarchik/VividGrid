@@ -11,7 +11,7 @@ public class VisualGrid : MonoBehaviour {
 
 	[SerializeField] private float _gridSpacing;
 	[SerializeField] private Vector3 _gridOffset;
-	[SerializeField] private float _buttonOffset;
+	[SerializeField] private Vector2 _buttonOffset;
 
 	// internal components and children
 	[SerializeField] private Canvas _buttonCanvas;
@@ -69,7 +69,7 @@ public class VisualGrid : MonoBehaviour {
 
 	public void SetUpButtons () {
 
-		_buttonCanvas.transform.SetParent(_gridContainer.transform);
+		// _buttonCanvas.transform.SetParent(_gridContainer.transform);
 		_buttonCanvas.transform.localPosition = Vector3.zero;
 
 		// set up column buttons
@@ -86,6 +86,7 @@ public class VisualGrid : MonoBehaviour {
 			button.name = "Button " + i;
 			button.transform.SetParent(colContainer.transform);
 			button.transform.localScale = Vector3.one;
+			button.transform.rotation = Quaternion.AngleAxis(90.0f, Vector3.forward);
 
 			// set position
 			float xPosVP = Camera.main.WorldToViewportPoint(columns[i].transform.position).x;
@@ -134,14 +135,14 @@ public class VisualGrid : MonoBehaviour {
 		_gridContainer.transform.position = _gridOffset;
 
 		// move the whole row of COLUMN buttons
-		Vector3 bottomRowPositionWithWorldOffset = (rows[numRow-1].transform.position + new Vector3( 0, -_buttonOffset ) );
+		Vector3 bottomRowPositionWithWorldOffset = (rows[numRow-1].transform.position + new Vector3( 0, -_buttonOffset.y ) );
 		Vector3 bottomRowVP = Camera.main.WorldToViewportPoint(bottomRowPositionWithWorldOffset);
 		float bottomRowXPosCanvas = (bottomRowVP.x * canvasWidth) - (canvasWidth/2.0f);
 		float bottomRowYPosCanvas = (bottomRowVP.y * canvasHeight) - (canvasHeight/2.0f);
 		colContainer.transform.localPosition = new Vector3( bottomRowXPosCanvas, bottomRowYPosCanvas );
 
 		// move the whole column of ROW buttons
-		Vector3 leftColumnPositionWithWorldOffset = (columns[0].transform.position + new Vector3( -_buttonOffset, 0 ) );
+		Vector3 leftColumnPositionWithWorldOffset = (columns[0].transform.position + new Vector3( -_buttonOffset.x, 0 ) );
 		Vector3 leftColVP = Camera.main.WorldToViewportPoint(leftColumnPositionWithWorldOffset);
 		float leftColXPosCanvas = (leftColVP.x * canvasWidth) - (canvasWidth/2.0f);
 		float leftColYPosCanvas = (leftColVP.y * canvasHeight) - (canvasHeight/2.0f);

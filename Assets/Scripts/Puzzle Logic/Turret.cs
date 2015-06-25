@@ -268,6 +268,14 @@ public class Turret : MonoBehaviour {
 		}
 	}
 
+	public void UndoRotate () {
+		if (_rotation != Rotation.Static) {
+			_visual.InitiateRotationAction(_direction, ReverseRotation(_rotation));
+		} else {
+			_grid.ResolveRotation( _id );
+		}
+	}
+
 	public void WillRotate ( Direction nextDirection ) {
 
 		_nextDirection = nextDirection;
@@ -344,6 +352,21 @@ public class Turret : MonoBehaviour {
 		int flippedDir = inputDir + 2;
 		if (flippedDir > 3) { flippedDir -= 4; }
 		return (Turret.Direction)flippedDir;
+	}
+
+	public Rotation ReverseRotation ( Rotation rotation ) {
+		switch (rotation)
+		{
+			case Rotation.CW_90:
+				return Rotation.CCW_90;
+			case Rotation.CCW_90:
+				return Rotation.CW_90;
+			case Rotation.CW_180:
+				return Rotation.CCW_180;
+			case Rotation.CCW_180:
+				return Rotation.CW_180;
+		}
+		return Rotation.Static;
 	}
 
 	public Turret NextTurret ( Direction direction ) {
