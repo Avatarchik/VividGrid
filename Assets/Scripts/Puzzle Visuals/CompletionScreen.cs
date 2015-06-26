@@ -16,7 +16,7 @@ public class CompletionScreen : MonoBehaviour {
 
 	public void Present () {
 		StartCoroutine(fadeIn());
-		movesCounter.text = "in " + grid.Moves.NumberOfMoves + " moves";
+		movesCounter.text = grid.Moves.NumberOfMoves + "/" + grid.Level.RequiredMoves;
 	}
 
 	public void Dismiss () {

@@ -165,6 +165,12 @@ public class ProgressionManager : MonoBehaviour {
 
 	public int selectedLevel = -1;
 
+	public string CurrentLevelPackName {
+		get {
+			return currentLevelPackName;
+		}
+	}
+
 	public LevelPack CurrentLevelPack {
 		get {
 			return getCurrentPack();
@@ -177,9 +183,9 @@ public class ProgressionManager : MonoBehaviour {
 		}
 	}
 
-	public string CurrentLevelPackName {
+	public Level CurrentLevel {
 		get {
-			return currentLevelPackName;
+			return getLevel(selectedLevel);
 		}
 	}
 
@@ -264,6 +270,11 @@ public class ProgressionManager : MonoBehaviour {
 		saveProgress();
 
 		Debug.Log("Reset Progress for " + levelPackName);
+	}
+
+	public LevelPack GetLevelPack ( string levelPackName ) {
+
+		return levelPackData[levelPackName];
 	}
 
 

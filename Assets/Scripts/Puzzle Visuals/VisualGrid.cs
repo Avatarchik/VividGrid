@@ -95,6 +95,7 @@ public class VisualGrid : MonoBehaviour {
 
 			// set button action
 			int columnIndex = i + 1;
+			button.GetComponent<Button>().interactable = false;
 			button.GetComponent<Button>().onClick.AddListener(() => {
 					activateColumn(columnIndex);
 				});
@@ -124,6 +125,7 @@ public class VisualGrid : MonoBehaviour {
 
 			// set button action
 			int rowIndex = i + 1;
+			button.GetComponent<Button>().interactable = false;
 			button.GetComponent<Button>().onClick.AddListener(() => {
 					activateRow(rowIndex);
 				});
@@ -174,9 +176,35 @@ public class VisualGrid : MonoBehaviour {
 		}
 	}
 
+	public void SetActiveButtons ( int[] activeColumnButtonIDs, int[] activeRowButtonIDs ) {
+
+		float inactiveOffset = 0.4f;
+
+		foreach (int i in activeColumnButtonIDs) {
+			var c = colButtons[i-1].GetComponent<Button>();
+			c.interactable = true;
+			c.transform.Translate(new Vector3(inactiveOffset,0));
+		}
+
+		foreach (int i in activeRowButtonIDs) {
+			var r = rowButtons[i-1].GetComponent<Button>();
+			r.interactable = true;
+			r.transform.Translate(new Vector3(inactiveOffset,0));
+		}
+
+		foreach (GameObject o in colButtons) {
+			o.transform.Translate(new Vector3(-inactiveOffset,0));
+		}
+
+		foreach (GameObject o in rowButtons) {
+			o.transform.Translate(new Vector3(-inactiveOffset,0));
+		}
+	}
+
 	public void DisableRotation () {
 
 		// TODO: Implement Rotation Disabled Functionality
+		// this happens while rotation is in progress
 	}
 
 	public void EnableRotation () {

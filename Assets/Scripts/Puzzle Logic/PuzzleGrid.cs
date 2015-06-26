@@ -58,11 +58,19 @@ public class PuzzleGrid : MonoBehaviour {
 	private List<int> resolvingTurretIDs;
 
 	private VisualGrid _visual;
+	private ProgressionManager _progMan;
 	private MoveManager _moves;
+	private Level _levelInfo;
 
 	public MoveManager Moves {
 		get {
 			return _moves;
+		}
+	}
+
+	public Level Level {
+		get {
+			return _levelInfo;
 		}
 	}
 
@@ -72,12 +80,26 @@ public class PuzzleGrid : MonoBehaviour {
 		if (!debug) {
 
 			// get the selected level
-			var progManager = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
+			_progMan = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
 
-			_levelPackName = progManager.CurrentLevelPackName;
-			_zoneName = progManager.CurrentZone.Name;
-			_levelID = progManager.selectedLevel;
+			_levelPackName = _progMan.CurrentLevelPackName;
+			_zoneName = _progMan.CurrentZone.Name;
+			_levelID = _progMan.selectedLevel;
+			_levelInfo = _progMan.CurrentLevel;
+		} else {
+			_levelPackName = debugLevelPackName;
+			_zoneName = debugZoneName;
+			_levelID = debugLevelID;
+			_levelInfo = new Level();
+			_levelInfo.LevelID = debugLevelID;
+			_levelInfo.NextLevelID = debugLevelID + 1;
+			_levelInfo.IsUnlocked = true;
+			_levelInfo.IsComplete = false;
+			_levelInfo.IsAced = false;
+			_levelInfo.RequiredMoves = 2;
+			_levelInfo.BestMoves = 5;
 		}
+
 		// initialize grid lines
 		columns = new GridLine[_numColumns];
 		rows = new GridLine[_numRows];
@@ -204,7 +226,7 @@ public class PuzzleGrid : MonoBehaviour {
 
 		// load level asset and convert to bytestream
 		var path = "Levels/" + _levelPackName + "/" + _zoneName + "/" + "level" + _levelID;
-		if (debug) { path = "Levels/" + debugLevelPackName + "/" + debugZoneName + "/" + "level" + debugLevelID; }
+		// if (debug) { path = "Levels/" + debugLevelPackName + "/" + debugZoneName + "/" + "level" + debugLevelID; }
 		var levelInfo = Resources.Load<TextAsset>(path);
 		var byteStream = new MemoryStream(levelInfo.bytes);
 
@@ -261,6 +283,7 @@ public class PuzzleGrid : MonoBehaviour {
         receiverTurretIDs = new int[receviers.Count];
         receiverTurretIDs = receviers.ToArray();
 
+        layoutButtons();
 		layoutTurrets();
 	}
 
@@ -333,7 +356,10 @@ public class PuzzleGrid : MonoBehaviour {
 
 	public void ResetGrid () {
 
-		Debug.Log("Resetting Grid");
+		// reset moves
+		Moves.Reset();
+
+		// reset turrets
 		foreach (Turret turret in turrets) {
 			resolvingTurretIDs.Add(turret._id);
 			turret.Reset();
@@ -344,8 +370,34 @@ public class PuzzleGrid : MonoBehaviour {
 	// private functions
 	private void levelComplete () {
 
-		completionScreen.Present();
-		Debug.Log("Level Complete");
+		if (!debug) {
+
+			if (Moves.NumberOfMoves <= _levelInfo.RequiredMoves) {
+				_progMan.LevelAced(_levelID, Moves.NumberOfMoves);
+			} else {
+				_progMan.LevelCompleted(_levelID, Moves.NumberOfMoves);
+			}
+
+			completionScreen.Present();
+		} else {
+			Debug.Log("Debug: Level Complete");
+		}
+	}
+
+	private void layoutButtons() {
+
+		var rowIDs = new List<int>();
+		var colIDs = new List<int>();
+		foreach (Turret t in turrets) {
+			if (t._rotation != Turret.Rotation.Static) {
+				var r = t._row;
+				var c = t._col;
+				if (!rowIDs.Contains(r)) { rowIDs.Add(r); }
+				if (!colIDs.Contains(c)) { colIDs.Add(c); }
+			}
+		}
+
+		_visual.SetActiveButtons(colIDs.ToArray(), rowIDs.ToArray());
 	}
 
 	private void layoutTurrets () {

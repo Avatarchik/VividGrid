@@ -4,16 +4,18 @@ using System.Collections;
 
 public class LevelSelectManager : MonoBehaviour {
 
-	public ProgressionManager _progressionManager;
-	public MusicManager _musicManager;
+	public ProgressionManager _progMan;
+	public MusicManager _musMan;
+
+	[SerializeField] private LevelSelectLevelPack[] packs;
 
 	private int currentZoneIndex;
 	private string[] levelPackZoneNames;
 
 	void Start () {
 		
-		_progressionManager = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
-		_musicManager = GameObject.Find("Music Manager").GetComponent<MusicManager>();
+		_progMan = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
+		_musMan = GameObject.Find("Music Manager").GetComponent<MusicManager>();
 
 		LoadLevelPack( "Default" );
 	}
@@ -21,8 +23,14 @@ public class LevelSelectManager : MonoBehaviour {
 	public void LoadLevelPack ( string levelName ) {
 
 		currentZoneIndex = 0;
-		_progressionManager.SetCurrentLevelPack( levelName );
-		levelPackZoneNames = _progressionManager.GetZoneNames();
+		_progMan.SetCurrentLevelPack( levelName );
+		levelPackZoneNames = _progMan.GetZoneNames();
+
+		foreach (LevelSelectLevelPack l in packs) {
+			if (l.levelPackName == levelName) {
+				l.LayoutZones(_progMan);
+			}
+		}
 	}
 
 	public bool NextZoneExistsFor ( string zoneName ) {
@@ -43,12 +51,12 @@ public class LevelSelectManager : MonoBehaviour {
 			// tell the visuals to fuck off
 		} else {
 			currentZoneIndex = test;
-			_progressionManager.SetCurrentZone(levelPackZoneNames[currentZoneIndex]);
+			_progMan.SetCurrentZone(levelPackZoneNames[currentZoneIndex]);
 		}
 	}
 
 	public void LevelSelected ( int levelID ) {
-		_progressionManager.selectedLevel = levelID;
+		_progMan.selectedLevel = levelID;
 		moveToLevel();
 	}
 
@@ -68,5 +76,9 @@ public class LevelSelectManager : MonoBehaviour {
 			}
 		}
 		return -1;
+	}
+
+	public void DebugResetGame () {
+		
 	}
 }

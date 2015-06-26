@@ -80,4 +80,9 @@ public class MoveManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public void Reset () {
+		prevMoves.Clear();
+		nextMoves.Clear();
+	}
 }
