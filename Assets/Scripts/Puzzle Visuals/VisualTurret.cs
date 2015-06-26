@@ -90,6 +90,35 @@ public class VisualTurret : MonoBehaviour {
 		StartCoroutine(rotationTween(rotationDeg, endDirection));
 	}
 
+	public void SendBeams () {
+		foreach (GameObject o in heads) {
+			var head = o.GetComponent<TurretHead>();
+			if ( head != null ) {
+
+				var anchor = head.transform.parent;
+				var direction = convertAnchorToDirection(anchor);
+				var destinationTransform = _turret.DestinationForBeam(direction);
+
+				var scaleOffset = transform.localScale.x;
+				if (destinationTransform != null) {
+					Debug.Log(destinationTransform.name);
+				}
+				
+
+				head.SendBeam(destinationTransform, scaleOffset);
+			}
+		}
+	}
+
+	public void RetractBeams () {
+		foreach (GameObject o in heads) {
+			var head = o.GetComponent<TurretHead>();
+			if ( head != null ) {
+				head.RetractBeam();
+			}
+		}
+	}
+
 	public void Reset ( Turret.Direction initialDirection ) {
 
 		float endRotation = 0.0f;
@@ -118,6 +147,24 @@ public class VisualTurret : MonoBehaviour {
 		// tween rotation
 		// TODO: Make this actually tween
 		StartCoroutine(rotationTween(difference, initialDirection));
+	}
+
+	public Transform GetPortTransformAtPosition ( Turret.Direction position ) {
+		switch (position)
+		{
+			case Turret.Direction.Up:
+				return _upAnchor.GetChild(0).GetChild(0);
+
+			case Turret.Direction.Right:
+				return _rightAnchor.GetChild(0).GetChild(0);
+
+			case Turret.Direction.Down:
+				return _downAnchor.GetChild(0).GetChild(0);
+
+			case Turret.Direction.Left:
+				return _leftAnchor.GetChild(0).GetChild(0);
+		}
+		return null;
 	}
 
 	private IEnumerator rotationTween ( float deltaRotationDEG, Turret.Direction endDirection ) {
@@ -337,6 +384,18 @@ public class VisualTurret : MonoBehaviour {
 
 		foreach (GameObject head in heads) {
 			// head.GetComponent<SpriteRenderer>().color = color;
+		}
+	}
+
+	private Turret.Direction convertAnchorToDirection ( Transform anchor ) {
+		if (anchor == _upAnchor) {
+			return Turret.Direction.Up;
+		} else if (anchor == _rightAnchor) {
+			return Turret.Direction.Right;
+		} else if (anchor == _downAnchor) {
+			return Turret.Direction.Down;
+		} else {
+			return Turret.Direction.Left;
 		}
 	}
 

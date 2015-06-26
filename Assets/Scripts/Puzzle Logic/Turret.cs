@@ -10,6 +10,7 @@ public class TurretPort {
 		Emitter,
 	}
 
+	public TurretPort		_visuallyConnectedPort;
 	public TurretPort		_connectedPort;
 	public Turret 			_turret;
 	public Turret.Direction _position;
@@ -25,6 +26,7 @@ public class TurretPort {
 	public void Reset () {
 
 		_active = false;
+		_visuallyConnectedPort = null;
 		_connectedPort = null;
 	}
 
@@ -81,11 +83,11 @@ public class TurretPort {
 			}
 
 			_connectedPort = null;
+			_visuallyConnectedPort = null;
 			_active = false;
 			_turret.PortsChanged();
 		}
 	}
-
 
 	public bool InputIsPowered () {
 
@@ -142,6 +144,7 @@ public class TurretPort {
 				} else {
 					Debug.Log( _turret.name + " hit a turret, but no input was available!" );
 				}
+				_visuallyConnectedPort = newPort;
 			} else {
 				Debug.Log( _turret.name + " fired into nothing!" );
 			}
@@ -167,6 +170,7 @@ public class TurretPort {
 			if ( _connectedPort != null ) {
 				_connectedPort.DisconnectInput();
 				_connectedPort = null;
+				_visuallyConnectedPort = null;
 			}
 
 			_turret.PortsChanged();
@@ -303,6 +307,7 @@ public class Turret : MonoBehaviour {
 	public void SendUpdatePulse () {
 		foreach ( TurretPort p in _ports ) {
 			p.UpdatePulse();
+			_visual.SendBeams();
 		}
 	}
 
@@ -313,10 +318,15 @@ public class Turret : MonoBehaviour {
 			foreach ( TurretPort p in _ports ) {
 				p.CastBeam();
 			}
+			if (_type != Type.Receiver) {
+				_visual.SendBeams();
+			}
 		}
 	}
 
 	public void PowerOff () {
+
+		_visual.RetractBeams();
 
 		if ( _status != Status.PoweredOff ) {
 			_status = Status.PoweredOff;
@@ -374,6 +384,18 @@ public class Turret : MonoBehaviour {
 		return _grid.NextTurret( _id, _col, _row, direction );
 	}
 
+	public Transform DestinationForBeam ( Direction localDirection ) {
+		var p = getPort(localDirection);
+		var connectedPort = p._visuallyConnectedPort;
+		if (connectedPort != null) {
+			var connectedPortTransform = connectedPort._turret._visual.GetPortTransformAtPosition(connectedPort._position);
+			return connectedPortTransform;
+		} else {
+			Debug.Log("Visually Connected Port is Null");
+		}
+		return null;
+	}
+
 	// private functions
 	private void initializePorts ( Type type, Layout layout ) {
 
@@ -381,12 +403,12 @@ public class Turret : MonoBehaviour {
 
 		switch (type)
 		{
-			case Turret.Type.Spawner:
-				createPort( TurretPort.Type.Emitter, Direction.Up 	 );
-				createPort( TurretPort.Type.Empty, 	 Direction.Right );
-				createPort( TurretPort.Type.Empty, 	 Direction.Down  );
-				createPort( TurretPort.Type.Empty, 	 Direction.Left  );
-				break;
+			// case Turret.Type.Spawner:
+			// 	createPort( TurretPort.Type.Emitter, Direction.Up 	 );
+			// 	createPort( TurretPort.Type.Empty, 	 Direction.Right );
+			// 	createPort( TurretPort.Type.Empty, 	 Direction.Down  );
+			// 	createPort( TurretPort.Type.Empty, 	 Direction.Left  );
+			// 	break;
 				
 			case Turret.Type.Receiver:
 				createPort( TurretPort.Type.Input, Direction.Up    );
@@ -395,6 +417,7 @@ public class Turret : MonoBehaviour {
 				createPort( TurretPort.Type.Input, Direction.Left  );
 				break;
 
+			case Turret.Type.Spawner:
 			case Turret.Type.Redirect:
 				switch (layout)
 				{
@@ -442,6 +465,15 @@ public class Turret : MonoBehaviour {
 		port._position = direction;
 
 		_ports[(int)direction] = port;
+	}
+
+	private TurretPort getPort ( Direction position ) {
+		foreach ( TurretPort p in _ports ) {
+			if ( p._position == position ) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 	private void checkIfStillPowered () {

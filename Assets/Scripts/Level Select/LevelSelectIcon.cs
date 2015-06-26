@@ -15,6 +15,9 @@ public class LevelSelectIcon : MonoBehaviour {
 	public GameObject completedRing;
 	public GameObject acedRing;
 
+	public Transform beam;
+	public float beamLength;
+
 	public int levelID_ref;
 	public LevelSelectZone Zone { get { return _zone; } }
 
@@ -35,6 +38,10 @@ public class LevelSelectIcon : MonoBehaviour {
 			incompleteRing.SetActive(!complete);
 			completedRing.SetActive(complete);
 			acedRing.SetActive(aced);
+
+			if (complete) {
+				beam.localScale = new Vector3(1.0f, beamLength);
+			}
 		}
 	}
 

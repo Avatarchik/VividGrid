@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d7ed7fa0ede9140f8808135eee9168e9
-timeCreated: 1434041483
+guid: a5c38aaa9ebb449d297c3095110e7e2c
+timeCreated: 1435186801
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -26,7 +26,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -2
+  textureFormat: -1
   maxTextureSize: 128
   textureSettings:
     filterMode: -1
@@ -43,13 +43,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-  spritePackingTag: all
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

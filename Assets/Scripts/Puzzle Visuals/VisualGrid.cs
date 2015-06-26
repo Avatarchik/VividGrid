@@ -178,7 +178,7 @@ public class VisualGrid : MonoBehaviour {
 
 	public void SetActiveButtons ( int[] activeColumnButtonIDs, int[] activeRowButtonIDs ) {
 
-		float inactiveOffset = 0.4f;
+		float inactiveOffset = 0.33f;
 
 		foreach (int i in activeColumnButtonIDs) {
 			var c = colButtons[i-1].GetComponent<Button>();
