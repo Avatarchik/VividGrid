@@ -153,12 +153,12 @@ public class ProgressionManager : MonoBehaviour {
 
 	[SerializeField] private string[] allLevelPackNames;
 
-	private string currentLevelPackName = "Default";
+	private string currentLevelPackName = "";
 	private const string saveDataSuffix = "_LevelPackZoneSaveData.xml";
 	private const string loadDataSuffix = "_LevelPackZoneLoadData";
 
 	private Dictionary<string,LevelPack> levelPackData = new Dictionary<string, LevelPack>();
-	private string nameOfCurrentZone = "Test Zone";
+	private string nameOfCurrentZone = "";
 
 	private bool shouldBeSavedFlag;
 	private bool statsShouldBeUpdatedFlag;
@@ -213,6 +213,9 @@ public class ProgressionManager : MonoBehaviour {
 	// Use this for initialization
 	void Initialize () {
 
+		// set initial level pack
+		SetCurrentLevelPack(allLevelPackNames[0]);
+
 		loadProgress();
 	}
 
@@ -227,6 +230,7 @@ public class ProgressionManager : MonoBehaviour {
 	}
 
 	public string[] GetZoneNames () {
+		// Debug.Log("GetZoneNames() - CurrentLevelPackName: " + CurrentLevelPackName);
 		var names = new string[CurrentLevelPack.zones.Length];
 		for ( int i = 0; i < CurrentLevelPack.zones.Length; i++ ) {
 			names[i] = CurrentLevelPack.zones[i].Name;
@@ -366,6 +370,9 @@ public class ProgressionManager : MonoBehaviour {
 		foreach (string s in allLevelPackNames) {
 			loadPack(s);
 		}
+
+		// select the default zone
+		nameOfCurrentZone = CurrentLevelPack.DefaultZoneName;
 	}
 
 	private void loadPack ( string packName ) {
@@ -375,9 +382,6 @@ public class ProgressionManager : MonoBehaviour {
 				LevelPack.LoadFromText(Resources.Load<TextAsset>("Data/" + packName + loadDataSuffix).text);
 		levelPackData.Add(packName, packData);
 
-		// select the default zone
-		nameOfCurrentZone = CurrentLevelPack.DefaultZoneName;
-		
 		// packData.DebugOutput();
 	}
 

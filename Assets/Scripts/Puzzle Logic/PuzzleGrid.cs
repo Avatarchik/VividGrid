@@ -38,6 +38,8 @@ public class PuzzleGrid : MonoBehaviour {
 
 	public CompletionScreen completionScreen;
 
+	public bool levelTesting;
+	private int minMoves;
 	public bool debug;
 	public string debugLevelPackName;
 	public string debugZoneName;
@@ -135,7 +137,6 @@ public class PuzzleGrid : MonoBehaviour {
 		Debug.Log("Column Rotated at Index " + i);
 		_moves.RegisterMove(GridLine.Type.Column, i);
 		ActivateGridLine(GridLine.Type.Column, i, false);
-
 	}
 
 	public void ActivateRow ( int i ) {
@@ -184,9 +185,12 @@ public class PuzzleGrid : MonoBehaviour {
 				break;
 		}
 
-		// tell turrets to rotate
+		// register rotations FIRST
 		foreach (int id in turretIDs) {
 			resolvingTurretIDs.Add(id);
+		}
+
+		foreach (int id in turretIDs) {
 			if (undo) {
 				turrets[id].UndoRotate();
 			} else {
@@ -225,7 +229,8 @@ public class PuzzleGrid : MonoBehaviour {
 		var turretCommands = new List<string>();
 
 		// load level asset and convert to bytestream
-		var path = "Levels/" + _levelPackName + "/" + _zoneName + "/" + "level" + _levelID;
+		var path = "Levels/Testing/l_" + _levelID;
+		// var path = "Levels/" + _levelPackName + "/" + _zoneName + "/" + "level" + _levelID;
 		// if (debug) { path = "Levels/" + debugLevelPackName + "/" + debugZoneName + "/" + "level" + debugLevelID; }
 		var levelInfo = Resources.Load<TextAsset>(path);
 		var byteStream = new MemoryStream(levelInfo.bytes);
@@ -243,7 +248,7 @@ public class PuzzleGrid : MonoBehaviour {
         }
 
         // initialize turret containers
-        int numTurrets = turretCommands.Count;
+        int numTurrets = turretCommands.Count - 1;
         turrets = new Turret[numTurrets];
 
         // prime visuals
@@ -255,26 +260,56 @@ public class PuzzleGrid : MonoBehaviour {
         var spawners  = new List<int>();
         var receviers = new List<int>();
 
-        foreach (string command in turretCommands) {
+        if ( levelTesting ) {
 
-        	string[] commands = command.Split(delimiters);
+	        for ( int i = 0; i < turretCommands.Count - 1; i++ ) {
 
-        	int col = int.Parse(commands[0]);
-        	int row = int.Parse(commands[1]);
-        	var type = (Turret.Type) Enum.Parse(typeof(Turret.Type), commands[2]);
-        	var rotation = (Turret.Rotation) Enum.Parse(typeof(Turret.Rotation), commands[3]);
-        	var layout = (Turret.Layout) Enum.Parse(typeof(Turret.Layout), commands[4]);
-        	var direction = (Turret.Direction) Enum.Parse(typeof(Turret.Direction), commands[5]);
+				string[] commands = turretCommands[i].Split(delimiters);
 
-        	if ( type == Turret.Type.Spawner ) {
-        		spawners.Add(turretID);
-        	} else if ( type == Turret.Type.Receiver ) {
-        		receviers.Add(turretID);
-        	}
+				int col = int.Parse(commands[0]);
+				int row = int.Parse(commands[1]);
+				var type = (Turret.Type) Enum.Parse(typeof(Turret.Type), commands[2]);
+				var rotation = (Turret.Rotation) Enum.Parse(typeof(Turret.Rotation), commands[3]);
+				var layout = (Turret.Layout) Enum.Parse(typeof(Turret.Layout), commands[4]);
+				var direction = (Turret.Direction) Enum.Parse(typeof(Turret.Direction), commands[5]);
 
-        	createTurret(turretID, col, row, type, rotation, layout, direction);
-        	turretID++;
-        }
+				if ( type == Turret.Type.Spawner ) {
+					spawners.Add(turretID);
+				} else if ( type == Turret.Type.Receiver ) {
+					receviers.Add(turretID);
+				}
+
+				createTurret(turretID, col, row, type, rotation, layout, direction);
+				turretID++;
+	        }
+
+	        // last line has moves
+	        minMoves = int.Parse(turretCommands[turretCommands.Count - 1]);
+	        Debug.Log("Min Moves: " + minMoves);
+
+		} else {
+
+	        foreach (string command in turretCommands) {
+
+				string[] commands = command.Split(delimiters);
+
+				int col = int.Parse(commands[0]);
+				int row = int.Parse(commands[1]);
+				var type = (Turret.Type) Enum.Parse(typeof(Turret.Type), commands[2]);
+				var rotation = (Turret.Rotation) Enum.Parse(typeof(Turret.Rotation), commands[3]);
+				var layout = (Turret.Layout) Enum.Parse(typeof(Turret.Layout), commands[4]);
+				var direction = (Turret.Direction) Enum.Parse(typeof(Turret.Direction), commands[5]);
+
+				if ( type == Turret.Type.Spawner ) {
+					spawners.Add(turretID);
+				} else if ( type == Turret.Type.Receiver ) {
+					receviers.Add(turretID);
+				}
+
+				createTurret(turretID, col, row, type, rotation, layout, direction);
+				turretID++;
+			}
+		}
 
         // save spawner turrets
         spawnerTurretIDs = new int[spawners.Count];
@@ -366,11 +401,12 @@ public class PuzzleGrid : MonoBehaviour {
 		}
 	}
 
-
 	// private functions
 	private void levelComplete () {
 
-		if (!debug) {
+		if (levelTesting) {
+			GameObject.Find("Game").GetComponent<LevelTester>().LevelComplete(minMoves, Moves.NumberOfMoves);
+		} else if (!debug) {
 
 			if (Moves.NumberOfMoves <= _levelInfo.RequiredMoves) {
 				_progMan.LevelAced(_levelID, Moves.NumberOfMoves);
@@ -379,7 +415,7 @@ public class PuzzleGrid : MonoBehaviour {
 			}
 
 			completionScreen.Present();
-		} else {
+		}  else {
 			Debug.Log("Debug: Level Complete");
 		}
 	}

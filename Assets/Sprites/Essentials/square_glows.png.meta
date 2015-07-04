@@ -29,14 +29,14 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 512
   textureSettings:
-    filterMode: -1
+    filterMode: 1
     aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
-  compressionQuality: 50
+  compressionQuality: -1
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1

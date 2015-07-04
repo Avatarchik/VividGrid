@@ -6,6 +6,7 @@ public class LevelSelectManager : MonoBehaviour {
 
 	public ProgressionManager _progMan;
 	public MusicManager _musMan;
+	public DragSnapper _dragManager;
 
 	[SerializeField] private LevelSelectLevelPack[] packs;
 
@@ -15,43 +16,51 @@ public class LevelSelectManager : MonoBehaviour {
 	void Start () {
 		
 		_progMan = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
-		_musMan = GameObject.Find("Music Manager").GetComponent<MusicManager>();
+		// _musMan = GameObject.Find("Music Manager").GetComponent<MusicManager>();
 
-		LoadLevelPack( "Default" );
+		LayoutLevelPacks();
+		// MoveToLevelPack( "Default" );
 	}
 
-	public void LoadLevelPack ( string levelName ) {
+	public void LayoutLevelPacks () {
+
+		// set up the layouts
+		foreach (LevelSelectLevelPack l in packs) {
+			l.LayoutZones(_progMan);
+		}
+
+		// get info from prog manager
+		levelPackZoneNames = _progMan.GetZoneNames();
+		currentZoneIndex = getIndexForZoneName(_progMan.CurrentZone.Name);
+
+		// set up drag manager
+		_dragManager.itemCount = levelPackZoneNames.Length + 1;
+		_dragManager.SetZoneFocus(currentZoneIndex + 1);
+	}
+
+	public void MoveToLevelPack ( string levelName ) {
 
 		currentZoneIndex = 0;
 		_progMan.SetCurrentLevelPack( levelName );
 		levelPackZoneNames = _progMan.GetZoneNames();
 
-		foreach (LevelSelectLevelPack l in packs) {
-			if (l.levelPackName == levelName) {
-				l.LayoutZones(_progMan);
-			}
-		}
+		// set the drag manager to new length
+		_dragManager.itemCount = levelPackZoneNames.Length + 1;
 	}
 
-	public bool NextZoneExistsFor ( string zoneName ) {
+	public bool MoveToZone ( int index ) {
 
-		int index = getIndexForZoneName(zoneName);
-		if (index == -1) {
-			Debug.Log("Zone " + zoneName + " does not exist.");
-			return false;
-		}
-		return ( (index + 1) < levelPackZoneNames.Length );
-	}
-
-	public void MoveToNextZone () {
-
-		int test = currentZoneIndex + 1;
-		if (test >= levelPackZoneNames.Length) {
-			// we're at last zone
-			// tell the visuals to fuck off
-		} else {
-			currentZoneIndex = test;
+		if (index >= 1 && index <= levelPackZoneNames.Length) {
+			currentZoneIndex = index - 1;
 			_progMan.SetCurrentZone(levelPackZoneNames[currentZoneIndex]);
+			movedToNewZone();
+			return true;
+		} else if ( index == 0 ) {
+			Debug.Log("Moved to logo screen.");
+			return true;
+		} else {
+			Debug.Log("Tried to move to invalid zone.");
+			return false;
 		}
 	}
 
@@ -64,8 +73,12 @@ public class LevelSelectManager : MonoBehaviour {
 
 	}
 
+	private void movedToNewZone() {
+		Debug.Log("Moved to new zone named " + _progMan.CurrentZone.Name);
+	}
+
 	private void moveToLevel () {
-		Application.LoadLevel(1);
+		Application.LoadLevel("PuzzleScene");
 	}
 
 	private int getIndexForZoneName( string zoneName ) {

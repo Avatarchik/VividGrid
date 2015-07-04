@@ -100,9 +100,9 @@ public class VisualTurret : MonoBehaviour {
 				var destinationTransform = _turret.DestinationForBeam(direction);
 
 				var scaleOffset = transform.localScale.x;
-				if (destinationTransform != null) {
-					Debug.Log(destinationTransform.name);
-				}
+				// if (destinationTransform != null) {
+				// 	Debug.Log(destinationTransform.name);
+				// }
 				
 
 				head.SendBeam(destinationTransform, scaleOffset);

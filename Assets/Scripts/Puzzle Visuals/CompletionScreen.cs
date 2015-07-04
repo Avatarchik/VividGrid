@@ -29,7 +29,7 @@ public class CompletionScreen : MonoBehaviour {
 	}
 
 	public void ReturnMainMenu () {
-		Application.LoadLevel(0);
+		Application.LoadLevel("MainMenu");
 	}
 	
 	IEnumerator fadeOut () {
