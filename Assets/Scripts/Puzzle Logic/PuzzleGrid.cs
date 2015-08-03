@@ -79,6 +79,7 @@ public class PuzzleGrid : MonoBehaviour {
 	// Use this for initialization
 	public void Start () {
 
+
 		if (!debug) {
 
 			// get the selected level

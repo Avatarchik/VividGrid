@@ -28,13 +28,14 @@ public class DragSnapper : UIBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	private float dragSpeed;
 	private int lastConfirmedTarget = 0;
 
-	protected override void Reset() {
+	// protected override void Reset() {
 
-		base.Reset();
+	// 	base.Reset();
 
-		if (scrollRect == null) // if we are resetting or attaching our script, try and find a scroll rect for convenience 
-			scrollRect = GetComponent<ScrollRect>();
-	}
+	// 	if (scrollRect == null) { // if we are resetting or attaching our script, try and find a scroll rect for convenience 
+	// 		scrollRect = GetComponent<ScrollRect>();
+	// 	}
+	// }
 
 	public void SetZoneFocus ( int zoneNumber ) {
 		scrollRect.verticalNormalizedPosition = (1f / (float)(itemCount - 1)) * zoneNumber;

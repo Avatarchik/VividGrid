@@ -1,0 +1,11 @@
+2,9,Spawner,Static,Single,Up
+2,7,Redirect,CCW_90,Single,Down
+2,5,Redirect,Static,Single,Down
+2,3,Redirect,CW_180,Single,Up
+2,1,Redirect,CCW_90,Single,Down
+4,7,Redirect,CW_180,Single,Down
+4,5,Redirect,CW_90,Single,Down
+4,3,Redirect,CW_90,Single,Right
+5,1,Redirect,CCW_90,Single,Down
+5,7,Receiver,Static,Receiver,Up
+4
