@@ -10,7 +10,7 @@ public class TintCycle : MonoBehaviour {
 	public List<MyCollection> colorLayouts;
 	
 	private int currentIndex = 0;
-	private SpriteRenderer objectRenderer;
+	// private SpriteRenderer objectRenderer;
 	
 	[System.Serializable]
 	public class MyCollection
@@ -21,7 +21,7 @@ public class TintCycle : MonoBehaviour {
 	}
 
 	void Awake(){
-		objectRenderer = gameObject.GetComponent<SpriteRenderer>();
+		// objectRenderer = gameObject.GetComponent<SpriteRenderer>();
 	}
 
 	void Start () {

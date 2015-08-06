@@ -170,19 +170,16 @@ public class ProgressionManager : MonoBehaviour {
 			return currentLevelPackName;
 		}
 	}
-
 	public LevelPack CurrentLevelPack {
 		get {
 			return getCurrentPack();
 		}
 	}
-
 	public Zone CurrentZone {
 		get {
 			return getCurrentPack().GetZone(nameOfCurrentZone);
 		}
 	}
-
 	public Level CurrentLevel {
 		get {
 			return getLevel(selectedLevel);
@@ -190,28 +187,23 @@ public class ProgressionManager : MonoBehaviour {
 	}
 
 
-
 			// test garbage
-
 			public void LevelAcedTest() {
 
 				LevelAced(1, 2);
 			}
-
 			public void LevelCompletedTest() {
 
 				LevelCompleted(1, 3);
 			}
-
 			public static void GoToMusic () {
 
 				Application.LoadLevel(0);
 			}
 
 
-
 	// Use this for initialization
-	void Initialize () {
+	public void Initialize () {
 
 		// set initial level pack
 		SetCurrentLevelPack(allLevelPackNames[0]);
@@ -219,16 +211,15 @@ public class ProgressionManager : MonoBehaviour {
 		loadProgress();
 	}
 
+	
 	public void SetCurrentLevelPack ( string levelPackName ) {
 
 		currentLevelPackName = levelPackName;
 	}
-
 	public void SetCurrentZone ( string zoneName ) {
 
 		nameOfCurrentZone = zoneName;
 	}
-
 	public string[] GetZoneNames () {
 		// Debug.Log("GetZoneNames() - CurrentLevelPackName: " + CurrentLevelPackName);
 		var names = new string[CurrentLevelPack.zones.Length];
@@ -237,6 +228,11 @@ public class ProgressionManager : MonoBehaviour {
 		}
 		return names;
 	}
+	public LevelPack GetLevelPack ( string levelPackName ) {
+
+		return levelPackData[levelPackName];
+	}
+
 
 	public void LevelCompleted ( int levelID, int numberOfMoves ) {
 
@@ -248,7 +244,6 @@ public class ProgressionManager : MonoBehaviour {
 		}
 		commitChanges();
 	}
-
 	public void LevelAced ( int levelID, int numberOfMoves ) {
 
 		// Debug.Log("Level " + levelID + " Aced");
@@ -259,14 +254,12 @@ public class ProgressionManager : MonoBehaviour {
 		}
 		commitChanges();
 	}
-
 	public void ResetAllProgress () {
 
 		foreach (string s in allLevelPackNames) {
 			ResetProgress(s);
 		}
 	}
-
 	public void ResetProgress ( string levelPackName ) {
 
 		var originalData = Resources.Load<TextAsset>("Data/" + currentLevelPackName + loadDataSuffix);
@@ -274,11 +267,6 @@ public class ProgressionManager : MonoBehaviour {
 		saveProgress();
 
 		Debug.Log("Reset Progress for " + levelPackName);
-	}
-
-	public LevelPack GetLevelPack ( string levelPackName ) {
-
-		return levelPackData[levelPackName];
 	}
 
 
@@ -292,7 +280,6 @@ public class ProgressionManager : MonoBehaviour {
 			setStatsShouldBeUpdatedFlag();
 		}
 	}
-
 	private void setAced ( Level level ) {
 
 		setComplete(level);
@@ -302,7 +289,6 @@ public class ProgressionManager : MonoBehaviour {
 			setStatsShouldBeUpdatedFlag();
 		}
 	}
-
 	private void registerMoves ( Level level, int numberOfMoves ) {
 
 		if ( numberOfMoves < level.BestMoves || level.BestMoves == -1 ) {
@@ -310,29 +296,6 @@ public class ProgressionManager : MonoBehaviour {
 			setSaveFlag();
 		}
 	}
-
-	private void setStatsShouldBeUpdatedFlag() {
-
-		statsShouldBeUpdatedFlag = true;
-	}
-
-	private void setSaveFlag () {
-
-		shouldBeSavedFlag = true;
-	}
-
-	private void commitChanges () {
-
-		if (statsShouldBeUpdatedFlag) {
-			getCurrentPack().GetZone(nameOfCurrentZone).UpdateStats();
-		}
-		if (shouldBeSavedFlag) {
-			saveProgress();
-		}
-		statsShouldBeUpdatedFlag = false;
-		shouldBeSavedFlag = false;
-	}
-
 	private void unlockNextLevel ( Level thisLevel ) {
 
 		var nextID = thisLevel.NextLevelID;
@@ -345,11 +308,32 @@ public class ProgressionManager : MonoBehaviour {
 		}
 	}
 
+
+	private void setStatsShouldBeUpdatedFlag() {
+
+		statsShouldBeUpdatedFlag = true;
+	}
+	private void setSaveFlag () {
+
+		shouldBeSavedFlag = true;
+	}
+	private void commitChanges () {
+
+		if (statsShouldBeUpdatedFlag) {
+			getCurrentPack().GetZone(nameOfCurrentZone).UpdateStats();
+		}
+		if (shouldBeSavedFlag) {
+			saveProgress();
+		}
+		statsShouldBeUpdatedFlag = false;
+		shouldBeSavedFlag = false;
+	}
+
+
 	private LevelPack getCurrentPack () {
 
 		return levelPackData[currentLevelPackName];
 	}
-
 	private Level getLevel ( int levelID ) {
 
 		var zone = getCurrentPack().GetZone(nameOfCurrentZone);
@@ -365,6 +349,7 @@ public class ProgressionManager : MonoBehaviour {
 		return null;
 	}
 
+
 	private void loadProgress () {
 
 		foreach (string s in allLevelPackNames) {
@@ -374,7 +359,6 @@ public class ProgressionManager : MonoBehaviour {
 		// select the default zone
 		nameOfCurrentZone = CurrentLevelPack.DefaultZoneName;
 	}
-
 	private void loadPack ( string packName ) {
 
 		var pPathSave = Path.Combine(Application.persistentDataPath, packName + saveDataSuffix);
@@ -384,7 +368,6 @@ public class ProgressionManager : MonoBehaviour {
 
 		// packData.DebugOutput();
 	}
-
 	private void saveProgress () {
 
 		foreach (string s in allLevelPackNames) {

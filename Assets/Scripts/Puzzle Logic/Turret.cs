@@ -186,7 +186,6 @@ public class Turret : MonoBehaviour {
 		Spawner,
 		Receiver
 	}
-
 	public enum Rotation {
 		CCW_90 = 0,
 		CW_90,
@@ -194,7 +193,6 @@ public class Turret : MonoBehaviour {
 		CW_180,
 		Static
 	}
-
 	public enum Layout {
 		Single = 0,
 		Double_90,
@@ -202,14 +200,12 @@ public class Turret : MonoBehaviour {
 		Triple,
 		Receiver
 	}
-
 	public enum Direction {
 		Up = 0,
 		Right = 1,
 		Down = 2,
 		Left = 3
 	}
-
 	public enum Status {
 		PoweredOff = 0,
 		PoweredOn
@@ -233,6 +229,8 @@ public class Turret : MonoBehaviour {
 	public Direction  _nextDirection;
 	public Status 	  _status;
 
+
+	// public methods
 	public void Initialize ( int id, int col, int row, PuzzleGrid grid, Type type, Rotation rotation, Layout layout, Direction initialDirection ) {
 		
 		// save components
@@ -258,12 +256,12 @@ public class Turret : MonoBehaviour {
 		_visual.Initialize(_type, _rotation, _layout, _direction);
 	}
 
+
 	public void Reset () {
 		_nextDirection = _direction = _initialDirection;
 		PowerOff();
 		_visual.Reset(_initialDirection);
 	}
-
 	public void Rotate () {
 		if (_rotation != Rotation.Static) {
 			_visual.InitiateRotationAction(_direction, _rotation);
@@ -271,7 +269,6 @@ public class Turret : MonoBehaviour {
 			_grid.ResolveRotation( _id );
 		}
 	}
-
 	public void UndoRotate () {
 		if (_rotation != Rotation.Static) {
 			_visual.InitiateRotationAction(_direction, ReverseRotation(_rotation));
@@ -279,7 +276,6 @@ public class Turret : MonoBehaviour {
 			_grid.ResolveRotation( _id );
 		}
 	}
-
 	public void WillRotate ( Direction nextDirection ) {
 
 		_nextDirection = nextDirection;
@@ -287,22 +283,20 @@ public class Turret : MonoBehaviour {
 			p.WillRotate();
 		}
 	}
-
 	public void DidRotate () {
 		
 		_direction = _nextDirection;
 		_grid.ResolveRotation( _id );
 	}
-
 	public void PortsChanged () {
 
 		checkIfStillPowered();
 	}
-
 	public TurretPort GetPortAtWorldDirection ( Direction worldDirection ) {
 		int local = (int)GetLocalDirection( worldDirection, _nextDirection );
 		return _ports[local];
 	}
+
 
 	public void SendUpdatePulse () {
 		foreach ( TurretPort p in _ports ) {
@@ -310,7 +304,6 @@ public class Turret : MonoBehaviour {
 			_visual.SendBeams();
 		}
 	}
-
 	public void PowerOn () {
 
 		if ( _status != Status.PoweredOn ) {
@@ -323,7 +316,6 @@ public class Turret : MonoBehaviour {
 			}
 		}
 	}
-
 	public void PowerOff () {
 
 		_visual.RetractBeams();
@@ -336,6 +328,7 @@ public class Turret : MonoBehaviour {
 		}
 	}
 
+
 	public Direction GetLocalDirection ( Direction worldPosition, Direction localOrientation ) {
 
 		int localOr = (int)localOrientation;
@@ -345,7 +338,6 @@ public class Turret : MonoBehaviour {
 		if (localDir < 0) { localDir += 4; }
 		return (Turret.Direction)localDir;
 	}
-
 	public Direction GetWorldDirection ( Direction localPosition, Direction worldOrientation ) {
 
 		int localPos = (int)localPosition;
@@ -355,7 +347,6 @@ public class Turret : MonoBehaviour {
 		if (worldDir < 0) { worldDir += 4; }
 		return (Turret.Direction)worldDir;
 	}
-
 	public Direction FlipDirection ( Direction inputDirection ) {
 
 		int inputDir = (int)inputDirection;
@@ -363,7 +354,6 @@ public class Turret : MonoBehaviour {
 		if (flippedDir > 3) { flippedDir -= 4; }
 		return (Turret.Direction)flippedDir;
 	}
-
 	public Rotation ReverseRotation ( Rotation rotation ) {
 		switch (rotation)
 		{
@@ -378,12 +368,10 @@ public class Turret : MonoBehaviour {
 		}
 		return Rotation.Static;
 	}
-
 	public Turret NextTurret ( Direction direction ) {
 
 		return _grid.NextTurret( _id, _col, _row, direction );
 	}
-
 	public Transform DestinationForBeam ( Direction localDirection ) {
 		var p = getPort(localDirection);
 		var connectedPort = p._visuallyConnectedPort;
@@ -396,6 +384,7 @@ public class Turret : MonoBehaviour {
 		return null;
 	}
 
+
 	// private functions
 	private void initializePorts ( Type type, Layout layout ) {
 
@@ -403,13 +392,6 @@ public class Turret : MonoBehaviour {
 
 		switch (type)
 		{
-			// case Turret.Type.Spawner:
-			// 	createPort( TurretPort.Type.Emitter, Direction.Up 	 );
-			// 	createPort( TurretPort.Type.Empty, 	 Direction.Right );
-			// 	createPort( TurretPort.Type.Empty, 	 Direction.Down  );
-			// 	createPort( TurretPort.Type.Empty, 	 Direction.Left  );
-			// 	break;
-				
 			case Turret.Type.Receiver:
 				createPort( TurretPort.Type.Input, Direction.Up    );
 				createPort( TurretPort.Type.Input, Direction.Right );
@@ -452,11 +434,6 @@ public class Turret : MonoBehaviour {
 				break;
 		}
 	}
-
-	private void resetPorts () {
-
-	}
-
 	private void createPort ( TurretPort.Type type, Direction direction ) {
 
 		var port = new TurretPort ( this );
@@ -466,7 +443,6 @@ public class Turret : MonoBehaviour {
 
 		_ports[(int)direction] = port;
 	}
-
 	private TurretPort getPort ( Direction position ) {
 		foreach ( TurretPort p in _ports ) {
 			if ( p._position == position ) {
@@ -475,7 +451,6 @@ public class Turret : MonoBehaviour {
 		}
 		return null;
 	}
-
 	private void checkIfStillPowered () {
 
 		if ( _type == Type.Spawner ) {

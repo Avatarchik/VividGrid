@@ -33,17 +33,20 @@ public class GridLine {
 [RequireComponent(typeof(MoveManager))]
 public class PuzzleGrid : MonoBehaviour {
 
+	[Header ("Grid Setup")]
 	public int _numColumns = 7;
 	public int _numRows = 13;
-
+	[Space (8)]
 	public CompletionScreen completionScreen;
 
+	[Header ("Debug")]
 	public bool levelTesting;
-	private int minMoves;
+	private int minMovesTesting;
 	public bool debug;
 	public string debugLevelPackName;
 	public string debugZoneName;
 	public int debugLevelID;
+
 
 	private string _levelPackName;
 	private string _zoneName;
@@ -69,16 +72,14 @@ public class PuzzleGrid : MonoBehaviour {
 			return _moves;
 		}
 	}
-
 	public Level Level {
 		get {
 			return _levelInfo;
 		}
 	}
 
-	// Use this for initialization
+	// public methods
 	public void Start () {
-
 
 		if (!debug) {
 
@@ -90,6 +91,7 @@ public class PuzzleGrid : MonoBehaviour {
 			_levelID = _progMan.selectedLevel;
 			_levelInfo = _progMan.CurrentLevel;
 		} else {
+
 			_levelPackName = debugLevelPackName;
 			_zoneName = debugZoneName;
 			_levelID = debugLevelID;
@@ -132,107 +134,27 @@ public class PuzzleGrid : MonoBehaviour {
 
 		LoadLayout();
 	}
+	public void InitializeBeam () {
 
-	public void ActivateColumn ( int i ) {
-
-		Debug.Log("Column Rotated at Index " + i);
-		_moves.RegisterMove(GridLine.Type.Column, i);
-		ActivateGridLine(GridLine.Type.Column, i, false);
-	}
-
-	public void ActivateRow ( int i ) {
-
-		Debug.Log("Row Rotated at Index " + i);
-		_moves.RegisterMove(GridLine.Type.Row, i);
-		ActivateGridLine(GridLine.Type.Row, i, false);
-	}
-
-	public void RedoColumn ( int i ) {
-		
-		Debug.Log("Column Rotated at Index " + i);
-		ActivateGridLine(GridLine.Type.Column, i, false);
-	}
-
-	public void RedoRow ( int i ) {
-		
-		Debug.Log("Row Rotated at Index " + i);
-		ActivateGridLine(GridLine.Type.Row, i, false);
-	}
-
-	public void UndoColumn ( int i ) {
-
-		Debug.Log("Column Undone at Index " + i);
-		ActivateGridLine(GridLine.Type.Column, i, true);
-	}
-
-	public void UndoRow ( int i ) {
-
-		Debug.Log("Row Undone at Index " + i);
-		ActivateGridLine(GridLine.Type.Row, i, true);
-	}
-
-	public void ActivateGridLine ( GridLine.Type type, int index, bool undo ) {
-
-		// get turret IDs
-		var turretIDs = new int[0];
-		switch (type)
-		{
-			case GridLine.Type.Column:
-				turretIDs = columns[index-1].GetTurretIDs();
-				break;
-
-			case GridLine.Type.Row:
-				turretIDs = rows[index-1].GetTurretIDs();
-				break;
-		}
-
-		// register rotations FIRST
-		foreach (int id in turretIDs) {
-			resolvingTurretIDs.Add(id);
-		}
-
-		foreach (int id in turretIDs) {
-			if (undo) {
-				turrets[id].UndoRotate();
-			} else {
-				turrets[id].Rotate();
-			}
-		}
-
-		_isRotating = true;
-		_visual.DisableRotation();
-	}
-
-	public void ResolveRotation ( int id ) {
-
-		// remove 
-		if ( !resolvingTurretIDs.Remove( id ) ) {
-			Debug.Log("Tried to resolve rotation that doesn't exist!");
-		}
-
-		// if all rotations are resolved update
-		if ( resolvingTurretIDs.Count == 0 ) {
-
-			Debug.Log("Resolving rotation...");
-
-			// resolve new beam path
-			SendUpdatePulse();
-
-			// reenable rotations
-			_isRotating = false;
-			_visual.EnableRotation();
+		foreach (int id in spawnerTurretIDs) {
+			turrets[id].PowerOn();
 		}
 	}
-
 	public void LoadLayout () {
 
 		// get ready to load file
 		var turretCommands = new List<string>();
 
 		// load level asset and convert to bytestream
-		var path = "Levels/Testing/l_" + _levelID;
-		// var path = "Levels/" + _levelPackName + "/" + _zoneName + "/" + "level" + _levelID;
-		// if (debug) { path = "Levels/" + debugLevelPackName + "/" + debugZoneName + "/" + "level" + debugLevelID; }
+		var path = "";
+		if (levelTesting) {
+			path = "Levels/Testing/l_" + _levelID;
+		} else if (debug) {
+			path = "Levels/" + debugLevelPackName + "/" + debugZoneName + "/" + "level" + debugLevelID;
+		} else {
+			path = "Levels/" + _levelPackName + "/" + _zoneName + "/" + "level" + _levelID;
+		}
+		
 		var levelInfo = Resources.Load<TextAsset>(path);
 		var byteStream = new MemoryStream(levelInfo.bytes);
 
@@ -249,11 +171,16 @@ public class PuzzleGrid : MonoBehaviour {
         }
 
         // initialize turret containers
-        int numTurrets = turretCommands.Count - 1;
+        int numTurrets = turretCommands.Count;
         turrets = new Turret[numTurrets];
 
         // prime visuals
-        _visual.PrimeTurretArray(numTurrets);
+        if (levelTesting) {
+        	_visual.PrimeTurretArray(numTurrets-1);
+    	} else {
+    		_visual.PrimeTurretArray(numTurrets);
+    	}
+        
 
         // extract turret info and create them
         int turretID = 0;
@@ -285,8 +212,8 @@ public class PuzzleGrid : MonoBehaviour {
 	        }
 
 	        // last line has moves
-	        minMoves = int.Parse(turretCommands[turretCommands.Count - 1]);
-	        Debug.Log("Min Moves: " + minMoves);
+	        minMovesTesting = int.Parse(turretCommands[turretCommands.Count - 1]);
+	        Debug.Log("Min Moves: " + minMovesTesting);
 
 		} else {
 
@@ -322,14 +249,6 @@ public class PuzzleGrid : MonoBehaviour {
         layoutButtons();
 		layoutTurrets();
 	}
-
-	public void InitializeBeam () {
-
-		foreach (int id in spawnerTurretIDs) {
-			turrets[id].PowerOn();
-		}
-	}
-
 	public void SendUpdatePulse () {
 
 		// make each spawner pulse
@@ -346,6 +265,92 @@ public class PuzzleGrid : MonoBehaviour {
 
 		levelComplete ();
 	}
+
+
+	public void ActivateColumn ( int i ) {
+
+		Debug.Log("Column Rotated at Index " + i);
+		_moves.RegisterMove(GridLine.Type.Column, i);
+		ActivateGridLine(GridLine.Type.Column, i, false);
+	}
+	public void ActivateRow ( int i ) {
+
+		Debug.Log("Row Rotated at Index " + i);
+		_moves.RegisterMove(GridLine.Type.Row, i);
+		ActivateGridLine(GridLine.Type.Row, i, false);
+	}
+	public void RedoColumn ( int i ) {
+		
+		Debug.Log("Column Rotated at Index " + i);
+		ActivateGridLine(GridLine.Type.Column, i, false);
+	}
+	public void RedoRow ( int i ) {
+		
+		Debug.Log("Row Rotated at Index " + i);
+		ActivateGridLine(GridLine.Type.Row, i, false);
+	}
+	public void UndoColumn ( int i ) {
+
+		Debug.Log("Column Undone at Index " + i);
+		ActivateGridLine(GridLine.Type.Column, i, true);
+	}
+	public void UndoRow ( int i ) {
+
+		Debug.Log("Row Undone at Index " + i);
+		ActivateGridLine(GridLine.Type.Row, i, true);
+	}
+	public void ActivateGridLine ( GridLine.Type type, int index, bool undo ) {
+
+		// get turret IDs
+		var turretIDs = new int[0];
+		switch (type)
+		{
+			case GridLine.Type.Column:
+				turretIDs = columns[index-1].GetTurretIDs();
+				break;
+
+			case GridLine.Type.Row:
+				turretIDs = rows[index-1].GetTurretIDs();
+				break;
+		}
+
+		// register rotations FIRST
+		foreach (int id in turretIDs) {
+			resolvingTurretIDs.Add(id);
+		}
+
+		foreach (int id in turretIDs) {
+			if (undo) {
+				turrets[id].UndoRotate();
+			} else {
+				turrets[id].Rotate();
+			}
+		}
+
+		_isRotating = true;
+		_visual.DisableRotation();
+	}
+	public void ResolveRotation ( int id ) {
+
+		// remove 
+		if ( !resolvingTurretIDs.Remove( id ) ) {
+			Debug.Log("Tried to resolve rotation that doesn't exist!");
+		}
+
+		// if all rotations are resolved update
+		if ( resolvingTurretIDs.Count == 0 ) {
+
+			Debug.Log("Resolving rotation...");
+
+			// resolve new beam path
+			SendUpdatePulse();
+
+			// reenable rotations
+			_isRotating = false;
+			_visual.EnableRotation();
+		}
+	}
+
 
 	public Turret NextTurret ( int id, int col, int row, Turret.Direction direction ) {
 
@@ -389,7 +394,6 @@ public class PuzzleGrid : MonoBehaviour {
 		}
 		return null;
 	}
-
 	public void ResetGrid () {
 
 		// reset moves
@@ -402,11 +406,12 @@ public class PuzzleGrid : MonoBehaviour {
 		}
 	}
 
+
 	// private functions
 	private void levelComplete () {
 
 		if (levelTesting) {
-			GameObject.Find("Game").GetComponent<LevelTester>().LevelComplete(minMoves, Moves.NumberOfMoves);
+			GameObject.Find("Game").GetComponent<LevelTester>().LevelComplete(minMovesTesting, Moves.NumberOfMoves);
 		} else if (!debug) {
 
 			if (Moves.NumberOfMoves <= _levelInfo.RequiredMoves) {
@@ -420,7 +425,6 @@ public class PuzzleGrid : MonoBehaviour {
 			Debug.Log("Debug: Level Complete");
 		}
 	}
-
 	private void layoutButtons() {
 
 		var rowIDs = new List<int>();
@@ -436,7 +440,6 @@ public class PuzzleGrid : MonoBehaviour {
 
 		_visual.SetActiveButtons(colIDs.ToArray(), rowIDs.ToArray());
 	}
-
 	private void layoutTurrets () {
 		foreach (Turret t in turrets) {
 			var r = t._row;
@@ -448,7 +451,6 @@ public class PuzzleGrid : MonoBehaviour {
 
 		InitializeBeam();
 	}
-
 	private void createTurret ( int turretID, int col, int row, Turret.Type type, Turret.Rotation rotation, Turret.Layout layout, Turret.Direction initialDirection ) {
 		
 		// create a turret, initilize it, and save it
@@ -462,6 +464,7 @@ public class PuzzleGrid : MonoBehaviour {
 		columns[col-1].AddNewTurret(turretID);
 		rows[row-1].AddNewTurret(turretID);
 	}
+
 
 	private int? getTurretID ( int col, int row ) {
 		var column = columns[col-1];

@@ -6,20 +6,27 @@ using System;
 
 public class PuzzleGridEditor : MonoBehaviour {
 
+	// prefabs
 	public GameObject editorTurret_prefab;
 
+	// level data
 	public int uniqueLevelID;
 	public int minimumNumberOfMoves;
 
+	// private object references
 	private EditorTurret activeTurret;
 	private SpawnTurretButton activeButton;
 
+	// public object references
 	public SpawnTurretButton[] allSpawners;
+	// public PuzzleGridEditorHelper helper;
 
+	// internal data
 	private string dataPath;
 	private string fileName;
 
 	void Start () {
+
 		var possibleLevel = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>().selectedLevel;
 		if (possibleLevel != -1) {
 			uniqueLevelID = possibleLevel;
@@ -107,6 +114,7 @@ public class PuzzleGridEditor : MonoBehaviour {
 	}
 
 	private void DeselectTurret () {
+
 		if (activeButton != null) {
 			activeButton.SetVisuallyInactive();
 		}
@@ -115,6 +123,7 @@ public class PuzzleGridEditor : MonoBehaviour {
 	}
 
 	private void DeleteTurret ( SpawnTurretButton button ) {
+
 		Destroy(button.turret.gameObject);
 		button.turret = null;
 
@@ -142,7 +151,7 @@ public class PuzzleGridEditor : MonoBehaviour {
 		// if button doesnt have a turret, make one
 		if ( activeButton.turret == null ) {
 
-			var turret = CreateTurret(activeButton);
+			CreateTurret(activeButton);
 			activeTurret = activeButton.turret;
 
 		} else {
@@ -153,7 +162,7 @@ public class PuzzleGridEditor : MonoBehaviour {
 
 	private EditorTurret CreateTurret ( SpawnTurretButton button ) {
 
-		var turret = (GameObject)Instantiate(editorTurret_prefab);
+		var turret = Instantiate(editorTurret_prefab);
 
 		// set position
 		var p = button.transform.position;
@@ -166,6 +175,7 @@ public class PuzzleGridEditor : MonoBehaviour {
 	}
 
 	private void GoToInGame () {
+
 		Application.LoadLevel("LevelTestingPuzzleScene");
 	}
 
@@ -242,28 +252,41 @@ public class PuzzleGridEditor : MonoBehaviour {
 	}
 
 	public void Save () {
-		string levelData = "";
 
-		List<string> turrets = new List<string>();
+		var turretDescriptors = new List<string>();
 
 		foreach (SpawnTurretButton b in allSpawners) {
 			if (b.turret != null) {
-				turrets.Add(b.GetTurretString());
+				turretDescriptors.Add(b.GetTurretString());
 			}
 		}
 
 		// add the number of moves to the file
-		turrets.Add(minimumNumberOfMoves.ToString());
+		turretDescriptors.Add(minimumNumberOfMoves.ToString());
 
-		if (turrets.Count > 0) {
-			levelData = string.Join(Environment.NewLine, turrets.ToArray());
-			ConvertStringToTextAsset(levelData);
+		if (turretDescriptors.Count > 0) {
+			var levelData = string.Join(Environment.NewLine, turretDescriptors.ToArray());
+			ConvertStringToTextAsset(levelData, dataPath);
 		} else {
 			Debug.Log("No turrets to save");
 		}
+
+		// update the file that stores the valid level ids
+		var allLevelGUIDs = new List<string>();
+		var info = new DirectoryInfo(Application.dataPath + "/Resources/Levels/Testing/");
+		var files = info.GetFiles("*.txt");
+		foreach (FileInfo file in files) {
+			var fullName = file.Name;
+			var noFileExtension = fullName.Substring(0, fullName.Length - 4);
+			var noPrefix = noFileExtension.Substring(2);
+			allLevelGUIDs.Add(noPrefix);
+		}
+		var idData = string.Join(",", allLevelGUIDs.ToArray());
+		ConvertStringToTextAsset(idData, Application.dataPath + "/Resources/Levels/Testing/idData.txt");
 	}
 
 	public void Load () {
+
 		if ( File.Exists(dataPath) ) {
 
 			// get ready to load file
@@ -295,13 +318,13 @@ public class PuzzleGridEditor : MonoBehaviour {
 		}
 	}
 
-	TextAsset ConvertStringToTextAsset(string text) {
-         // string temporaryTextFileName = "l_" + uniqueLevelID;
-         File.WriteAllText(dataPath, text);
+	void ConvertStringToTextAsset ( string text, string path) {
+
+         File.WriteAllText(path, text);
          AssetDatabase.SaveAssets();
          AssetDatabase.Refresh();
-         TextAsset textAsset = Resources.Load(fileName) as TextAsset;
-         return textAsset;
+         // var textAsset = Resources.Load(name) as TextAsset;
+         // return textAsset;
     }
 
 }

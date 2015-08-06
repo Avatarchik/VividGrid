@@ -8,17 +8,20 @@ public class VisualTurret : MonoBehaviour {
 	private SpriteRenderer _sprite;
 	private Turret _turret;
 
-	// editor connections
+
+	[Header("Anchors")]
 	[SerializeField] private Transform _upAnchor;
 	[SerializeField] private Transform _rightAnchor;
 	[SerializeField] private Transform _downAnchor;
 	[SerializeField] private Transform _leftAnchor;
 
-	// prefabs
+
+	[Header("Prefabs")]
 	[SerializeField] private Object turretHead_prefab;
 	[SerializeField] private Object turretPort_prefab;
 
-	// sprites
+
+	[Header("Sprites")]
 	[SerializeField] private Sprite turret_cw_90;
 	[SerializeField] private Sprite turret_ccw_90;
 	[SerializeField] private Sprite turret_180;
@@ -27,9 +30,12 @@ public class VisualTurret : MonoBehaviour {
 	[SerializeField] private Sprite turret_receiver;
 	[SerializeField] private Sprite turret_port;
 
+
 	// components
 	private GameObject[] heads;
 
+
+	// public methods
 	public void Initialize (Turret.Type type, Turret.Rotation rotation, Turret.Layout layout, Turret.Direction initialDirection) {
 
 		_sprite = GetComponent<SpriteRenderer>();
@@ -40,14 +46,12 @@ public class VisualTurret : MonoBehaviour {
 		setRotation(rotation);
 		setType(type);
 	}
-
 	public void SetPosition ( Vector2 position ) {
 
 		transform.position = new Vector3 ( position.x, position.y );
 	}
-
 	public void InitiateRotationAction ( Turret.Direction startDirection, Turret.Rotation rotation ) {
-
+		
 		int startDir = (int)startDirection;
 		int rotAmt = 0;
 		float rotationDeg = 0;
@@ -89,8 +93,8 @@ public class VisualTurret : MonoBehaviour {
 		// TODO: Make this actually tween
 		StartCoroutine(rotationTween(rotationDeg, endDirection));
 	}
-
 	public void SendBeams () {
+
 		foreach (GameObject o in heads) {
 			var head = o.GetComponent<TurretHead>();
 			if ( head != null ) {
@@ -98,18 +102,12 @@ public class VisualTurret : MonoBehaviour {
 				var anchor = head.transform.parent;
 				var direction = convertAnchorToDirection(anchor);
 				var destinationTransform = _turret.DestinationForBeam(direction);
-
 				var scaleOffset = transform.localScale.x;
-				// if (destinationTransform != null) {
-				// 	Debug.Log(destinationTransform.name);
-				// }
-				
 
 				head.SendBeam(destinationTransform, scaleOffset);
 			}
 		}
 	}
-
 	public void RetractBeams () {
 		foreach (GameObject o in heads) {
 			var head = o.GetComponent<TurretHead>();
@@ -118,7 +116,6 @@ public class VisualTurret : MonoBehaviour {
 			}
 		}
 	}
-
 	public void Reset ( Turret.Direction initialDirection ) {
 
 		float endRotation = 0.0f;
@@ -148,7 +145,6 @@ public class VisualTurret : MonoBehaviour {
 		// TODO: Make this actually tween
 		StartCoroutine(rotationTween(difference, initialDirection));
 	}
-
 	public Transform GetPortTransformAtPosition ( Turret.Direction position ) {
 		switch (position)
 		{
@@ -167,6 +163,8 @@ public class VisualTurret : MonoBehaviour {
 		return null;
 	}
 
+
+	// private functions
 	private IEnumerator rotationTween ( float deltaRotationDEG, Turret.Direction endDirection ) {
 
 		yield return new WaitForSeconds(0.1f);
@@ -176,8 +174,6 @@ public class VisualTurret : MonoBehaviour {
 		// on completion verify
 		verifyRotation(endDirection);
 	}
-
-	// private functions
 	private void verifyRotation ( Turret.Direction endDirection ) {
 
 		switch ( endDirection )
@@ -200,6 +196,18 @@ public class VisualTurret : MonoBehaviour {
 		}
 
 		_turret.DidRotate();
+	}
+	private Turret.Direction convertAnchorToDirection ( Transform anchor ) {
+
+		if (anchor == _upAnchor) {
+			return Turret.Direction.Up;
+		} else if (anchor == _rightAnchor) {
+			return Turret.Direction.Right;
+		} else if (anchor == _downAnchor) {
+			return Turret.Direction.Down;
+		} else {
+			return Turret.Direction.Left;
+		}
 	}
 
 
@@ -225,7 +233,6 @@ public class VisualTurret : MonoBehaviour {
 			break;
 		}
 	}
-
 	private void setLayout ( Turret.Layout layout ) {
 
 		switch (layout)
@@ -271,7 +278,6 @@ public class VisualTurret : MonoBehaviour {
 			break;
 		}
 	}
-
 	private void spawnHead ( Turret.Direction direction, int id ) {
 
 		// create a head object
@@ -306,7 +312,6 @@ public class VisualTurret : MonoBehaviour {
 		// save reference
 		heads[id] = head;
 	}
-
 	private void spawnPort ( Turret.Direction direction, int id ) {
 
 		// create a port object
@@ -341,24 +346,33 @@ public class VisualTurret : MonoBehaviour {
 		// save reference
 		heads[id] = port;
 	}
-
 	private void setType ( Turret.Type type ) {
 
 		switch (type)
 		{
 			case Turret.Type.Spawner:
 				_sprite.sprite = turret_spawner;
-				setHeadColor(Color.white);
+				foreach (GameObject h in heads) {
+					if (h.name == "Turret Port") {
+						h.SetActive(false);
+					}
+				}
 				break;
 				
 			case Turret.Type.Receiver:
 				_sprite.sprite = turret_receiver;
-				setHeadColor(Color.white);
+				foreach (GameObject h in heads) {
+					h.SetActive(false);
+					var oldParent = h.transform.parent;
+					h.transform.parent = transform;
+					h.transform.localPosition = Vector3.zero;
+					h.transform.parent = oldParent;
+				}
 				break;
 		}
 	}
-
 	private void setRotation ( Turret.Rotation rotation ) {
+
 		switch (rotation)
 		{
 			case Turret.Rotation.CW_90:
@@ -379,24 +393,4 @@ public class VisualTurret : MonoBehaviour {
 				break;
 		}
 	}
-
-	private void setHeadColor ( Color color ) {
-
-		foreach (GameObject head in heads) {
-			// head.GetComponent<SpriteRenderer>().color = color;
-		}
-	}
-
-	private Turret.Direction convertAnchorToDirection ( Transform anchor ) {
-		if (anchor == _upAnchor) {
-			return Turret.Direction.Up;
-		} else if (anchor == _rightAnchor) {
-			return Turret.Direction.Right;
-		} else if (anchor == _downAnchor) {
-			return Turret.Direction.Down;
-		} else {
-			return Turret.Direction.Left;
-		}
-	}
-
 }
