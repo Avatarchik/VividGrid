@@ -4,11 +4,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(PuzzleGrid))]
 public class VisualGrid : MonoBehaviour {
 
+	[Header("Prefabs")]
 	[SerializeField] private Object buttonColumn_prefab;
 	[SerializeField] private Object buttonRow_prefab;
 	[SerializeField] private Object baseTurret_prefab;
 	[SerializeField] private Object gridLine_prefab;
 
+	[Header("Grid Sizing")]
 	[SerializeField] private float _gridSpacing;
 	[SerializeField] private Vector3 _gridOffset;
 	[SerializeField] private Vector2 _buttonOffset;
@@ -25,6 +27,8 @@ public class VisualGrid : MonoBehaviour {
 	private GameObject[] rows;
 	private GameObject[] turrets;
 
+
+	// initialization methods
 	public void SetUpGrid () {
 
 		_puzzleGrid = GetComponent<PuzzleGrid>();
@@ -66,7 +70,6 @@ public class VisualGrid : MonoBehaviour {
 
 		UpdateGridLayout();
 	}
-
 	public void SetUpButtons () {
 
 		// _buttonCanvas.transform.SetParent(_gridContainer.transform);
@@ -151,6 +154,7 @@ public class VisualGrid : MonoBehaviour {
 		rowContainer.transform.localPosition = new Vector3( leftColXPosCanvas, leftColYPosCanvas );
 	}
 
+	// layout information
 	public void UpdateGridLayout () {
 
 		int numCol = columns.Length;
@@ -175,7 +179,6 @@ public class VisualGrid : MonoBehaviour {
 			rowToPlace.transform.position = new Vector3( 0, rowStart + (i * rowStep) );
 		}
 	}
-
 	public void SetActiveButtons ( int[] activeColumnButtonIDs, int[] activeRowButtonIDs ) {
 
 		float inactiveOffset = 0.33f;
@@ -200,18 +203,18 @@ public class VisualGrid : MonoBehaviour {
 			o.transform.Translate(new Vector3(-inactiveOffset,0));
 		}
 	}
-
 	public void DisableRotation () {
 
 		// TODO: Implement Rotation Disabled Functionality
 		// this happens while rotation is in progress
 	}
-
 	public void EnableRotation () {
 		
 		// TODO: Implement Rotation Enabled Functionality
 	}
 
+
+	// turret management
 	public void PrimeTurretArray ( int numTurrets ) {
 
 		turrets = new GameObject[numTurrets];
@@ -221,7 +224,6 @@ public class VisualGrid : MonoBehaviour {
 		_turretContainer.name = "Turrets";
 		_turretContainer.transform.parent = _gridContainer.transform;
 	}
-
 	public GameObject CreateTurret ( int id ) {
 
 		var turret = (GameObject)Instantiate(baseTurret_prefab);
@@ -231,6 +233,7 @@ public class VisualGrid : MonoBehaviour {
 		return turret;
 	}
 
+	// helpers
 	public Vector2 GetPositionFor( int col, int row ) {
 		float x = columns[col - 1].transform.position.x;
 		float y = rows[row - 1].transform.position.y;
@@ -242,7 +245,6 @@ public class VisualGrid : MonoBehaviour {
 
 		_puzzleGrid.ActivateColumn(columnIndex);
 	}
-
 	private void activateRow ( int rowIndex ) {
 
 		_puzzleGrid.ActivateRow(rowIndex);

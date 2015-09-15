@@ -34,8 +34,8 @@ public class GridLine {
 public class PuzzleGrid : MonoBehaviour {
 
 	[Header ("Grid Setup")]
-	public int _numColumns = 7;
-	public int _numRows = 13;
+	public int _numColumns = 5;
+	public int _numRows = 9;
 	[Space (8)]
 	public CompletionScreen completionScreen;
 

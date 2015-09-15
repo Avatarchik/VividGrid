@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class Move {
@@ -48,7 +48,6 @@ public class MoveManager : MonoBehaviour {
 		prevMoves.Push(newMove);
 		nextMoves.Clear();
 	}
-
 	public void UndoLastMove () {
 		if (prevMoves.Count > 0) {
 			var lastMove = prevMoves.Pop();
@@ -64,7 +63,6 @@ public class MoveManager : MonoBehaviour {
 			}
 		}
 	}
-
 	public void RedoNextMove () {
 		if (nextMoves.Count > 0) {
 			var nextMove = nextMoves.Pop();
@@ -80,7 +78,6 @@ public class MoveManager : MonoBehaviour {
 			}
 		}
 	}
-
 	public void Reset () {
 		prevMoves.Clear();
 		nextMoves.Clear();

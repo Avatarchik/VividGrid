@@ -360,6 +360,7 @@ public class VisualTurret : MonoBehaviour {
 				break;
 				
 			case Turret.Type.Receiver:
+				transform.localScale = Vector3.one;
 				_sprite.sprite = turret_receiver;
 				foreach (GameObject h in heads) {
 					h.SetActive(false);
