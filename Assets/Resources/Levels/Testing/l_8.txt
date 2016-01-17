@@ -4,7 +4,7 @@
 3,3,Redirect,CW_90,Single,Left
 3,5,Redirect,Static,Single,Left
 3,7,Redirect,CW_90,Single,Up
-3,9,Receiver,Static,Receiver,Up
+3,8,Receiver,Static,Receiver,Up
 5,3,Redirect,CW_90,Single,Down
 5,5,Redirect,CW_90,Single,Up
 5,7,Redirect,CW_90,Single,Left

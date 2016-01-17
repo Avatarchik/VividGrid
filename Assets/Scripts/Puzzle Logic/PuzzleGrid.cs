@@ -86,10 +86,13 @@ public class PuzzleGrid : MonoBehaviour {
 			// get the selected level
 			_progMan = GameObject.Find("Progression Manager").GetComponent<ProgressionManager>();
 
-			_levelPackName = _progMan.CurrentLevelPackName;
-			_zoneName = _progMan.CurrentZone.Name;
+
 			_levelID = _progMan.selectedLevel;
-			_levelInfo = _progMan.CurrentLevel;
+			if (!levelTesting) {
+				_levelPackName = _progMan.CurrentLevelPackName;
+				_zoneName = _progMan.CurrentZone.Name;
+				_levelInfo = _progMan.CurrentLevel;
+			}
 		} else {
 
 			_levelPackName = debugLevelPackName;
@@ -171,12 +174,12 @@ public class PuzzleGrid : MonoBehaviour {
         }
 
         // initialize turret containers
-        int numTurrets = turretCommands.Count;
+        int numTurrets = turretCommands.Count - 1;  // !!!!!!! THIS NEEDS TO CHANGE FOR LEVEL TESTING
         turrets = new Turret[numTurrets];
 
         // prime visuals
         if (levelTesting) {
-        	_visual.PrimeTurretArray(numTurrets-1);
+        	_visual.PrimeTurretArray(numTurrets);
     	} else {
     		_visual.PrimeTurretArray(numTurrets);
     	}
@@ -188,10 +191,20 @@ public class PuzzleGrid : MonoBehaviour {
         var spawners  = new List<int>();
         var receviers = new List<int>();
 
+
+
+
+
         if ( levelTesting ) {
 
-	        for ( int i = 0; i < turretCommands.Count - 1; i++ ) {
+			int m = 0;
+			Debug.Log("Num commands " + turretCommands.Count);
 
+	        for ( int i = 0; i < turretCommands.Count - 1; i++ ) {
+				
+				Debug.Log("Counter " + m);
+				m++;
+				
 				string[] commands = turretCommands[i].Split(delimiters);
 
 				int col = int.Parse(commands[0]);
@@ -429,7 +442,13 @@ public class PuzzleGrid : MonoBehaviour {
 
 		var rowIDs = new List<int>();
 		var colIDs = new List<int>();
+
+		int i = 0;
+
+		Debug.Log("Num " + turrets.Length);
 		foreach (Turret t in turrets) {
+			Debug.Log("Counter " + i);
+			i++;
 			if (t._rotation != Turret.Rotation.Static) {
 				var r = t._row;
 				var c = t._col;

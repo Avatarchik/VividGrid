@@ -1,0 +1,16 @@
+1,4,Redirect,CCW_90,Single,Left
+1,8,Redirect,CW_90,Single,Up
+2,8,Redirect,CW_90,Double_90,Left
+2,7,Redirect,CW_180,Single,Left
+2,4,Redirect,CW_90,Double_180,Right
+2,5,Spawner,Static,Single,Up
+3,2,Redirect,CW_90,Single,Right
+3,6,Redirect,CCW_90,Single,Right
+4,4,Redirect,Static,Single,Up
+4,5,Receiver,Static,Receiver,Up
+4,6,Redirect,CW_180,Single,Down
+4,2,Redirect,CW_180,Single,Left
+5,4,Receiver,Static,Receiver,Up
+5,7,Redirect,CW_90,Single,Up
+5,8,Redirect,CW_90,Single,Left
+5

@@ -69,6 +69,7 @@ public class LevelTestingProgressionManager : MonoBehaviour {
 		if (playOrderGUIDs.Count > 0) {
 			_progManager.selectedLevel = playOrderGUIDs.Pop();
 			Application.LoadLevel("LevelTestingPuzzleScene");
+			Debug.Log("Current level is " + _progManager.selectedLevel);
 		} else {
 			Debug.Log("No more levels!");
 		}

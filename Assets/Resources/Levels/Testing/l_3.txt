@@ -1,5 +1,4 @@
 1,6,Redirect,CW_90,Single,Up
-1,4,Redirect,CW_90,Single,Right
 2,8,Spawner,Static,Single,Up
 2,6,Redirect,CW_90,Single,Left
 4,6,Redirect,CW_90,Single,Right

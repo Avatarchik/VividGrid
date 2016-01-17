@@ -6,7 +6,7 @@
 3,3,Redirect,CW_90,Double_180,Right
 3,5,Redirect,CW_90,Double_180,Up
 3,7,Redirect,CW_90,Double_180,Up
-3,9,Spawner,Static,Single,Up
+3,8,Spawner,Static,Single,Up
 4,1,Receiver,Static,Receiver,Up
 5,1,Redirect,CW_180,Double_90,Left
 5,3,Redirect,CW_90,Double_180,Right

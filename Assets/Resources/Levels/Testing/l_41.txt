@@ -1,0 +1,9 @@
+3,1,Spawner,Static,Single,Down
+3,2,Redirect,Static,Single,Down
+3,6,Redirect,CW_90,Single,Up
+3,5,Redirect,Static,Single,Left
+3,4,Redirect,CW_90,Single,Right
+3,8,Receiver,Static,Receiver,Up
+5,6,Redirect,CW_90,Single,Left
+5,4,Redirect,CW_90,Single,Up
+4

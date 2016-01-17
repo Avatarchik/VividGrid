@@ -4,6 +4,322 @@
 		"selected_items":
 		[
 			[
+				"Vec",
+				"Vector3	Vector3"
+			],
+			[
+				"loc",
+				"localPosition	Vector3 { get; set; }"
+			],
+			[
+				"LevelTesting",
+				"LevelTestingProgressionManager	LevelTestingProgressionManager"
+			],
+			[
+				"Get",
+				"GetString(string key, string defaultValue)	string"
+			],
+			[
+				"subm",
+				"Submit()	void"
+			],
+			[
+				"edt",
+				"editField	Text"
+			],
+			[
+				"Set",
+				"SetString(string key, string value)	void"
+			],
+			[
+				"Play",
+				"PlayerPrefs	PlayerPrefs"
+			],
+			[
+				"name",
+				"nameExists()	void"
+			],
+			[
+				"Convert",
+				"ConvertStringToTextAsset(string text, string path)	void"
+			],
+			[
+				"Unit",
+				"UnityEditor	UnityEditor"
+			],
+			[
+				"Pu",
+				"PuzzleGridEditorHelper	PuzzleGridEditorHelper"
+			],
+			[
+				"target",
+				"targetMoves	Text"
+			],
+			[
+				"turr",
+				"turretCommands	List<string>"
+			],
+			[
+				"Col",
+				"Color(float r, float g, float b)	Color(float r, float g, float b)"
+			],
+			[
+				"R",
+				"Redirect	Type"
+			],
+			[
+				"t",
+				"text	string { get; set; }"
+			],
+			[
+				"Lev",
+				"LevelTestingProgressionManager	LevelTestingProgressionManager"
+			],
+			[
+				"Load",
+				"LoadLevel(string name)	void"
+			],
+			[
+				"int",
+				"intOnly	int"
+			],
+			[
+				"Sub",
+				"Substring(int startIndex)	string"
+			],
+			[
+				"Dire",
+				"DirectoryInfo	DirectoryInfo"
+			],
+			[
+				"in",
+				"Input	Input"
+			],
+			[
+				"C",
+				"CW_90	Rotation"
+			],
+			[
+				"Ba",
+				"Backspace	KeyCode"
+			],
+			[
+				"Key",
+				"KeyCode	KeyCode"
+			],
+			[
+				"active",
+				"activeButton	SpawnTurretButton"
+			],
+			[
+				"butt",
+				"activeButton	SpawnTurretButton"
+			],
+			[
+				"En",
+				"Environment	Environment"
+			],
+			[
+				"level",
+				"levelData	string"
+			],
+			[
+				"GetYp",
+				"GetTypeString()	string"
+			],
+			[
+				"un",
+				"uniqueLevelID	int"
+			],
+			[
+				"Ke",
+				"KeyCode	KeyCode"
+			],
+			[
+				"V",
+				"SetVisuallyInactive()	void"
+			],
+			[
+				"act",
+				"activeButton	SpawnTurretButton"
+			],
+			[
+				"double",
+				"double180	Sprite"
+			],
+			[
+				"Color",
+				"Color(float r, float g, float b, float a)	Color(float r, float g, float b, float a)"
+			],
+			[
+				"co",
+				"color	Color { get; set; }"
+			],
+			[
+				"Getcompo",
+				"GetComponent<T>()	T"
+			],
+			[
+				"GetCompot",
+				"GetComponent<T>()	T"
+			],
+			[
+				"GetMouse",
+				"GetMouseButtonDown(int button)	bool"
+			],
+			[
+				"SEr",
+				"SerializeField	SerializeField"
+			],
+			[
+				"To",
+				"ToString()	string"
+			],
+			[
+				"Curre",
+				"CurrentLevelPackName	string { get; }"
+			],
+			[
+				"LevelSe",
+				"LevelSelectManager	LevelSelectManager"
+			],
+			[
+				"cl",
+				"Clamp(int value, int min, int max)	int"
+			],
+			[
+				"levelPac",
+				"levelPackZoneNames	string[]"
+			],
+			[
+				"speed",
+				"speedModifier	float"
+			],
+			[
+				"max",
+				"Clamp(int value, int min, int max)	int"
+			],
+			[
+				"An",
+				"AngleAxis(float angle, Vector3 axis)	Quaternion"
+			],
+			[
+				"rand",
+				"randAngle	float"
+			],
+			[
+				"Ra",
+				"Range(float min, float max)	float"
+			],
+			[
+				"beam",
+				"beamLength	float"
+			],
+			[
+				"loca",
+				"localScale	Vector3 { get; set; }"
+			],
+			[
+				"GEt",
+				"GetChild(int index)	Transform"
+			],
+			[
+				"locl",
+				"localScale	Vector3 { get; set; }"
+			],
+			[
+				"Turr",
+				"Turret	Turret"
+			],
+			[
+				"conn",
+				"connectedPortTransform	Transform"
+			],
+			[
+				"Turret",
+				"TurretHead	TurretHead"
+			],
+			[
+				"new",
+				"newPort	TurretPort"
+			],
+			[
+				"row",
+				"rowIDs	List<int>"
+			],
+			[
+				"col",
+				"colButtons	GameObject[]"
+			],
+			[
+				"ty",
+				"Type	Type"
+			],
+			[
+				"is",
+				"IsAced	bool"
+			],
+			[
+				"prog",
+				"_progMan	ProgressionManager"
+			],
+			[
+				"l",
+				"levelID_ref	int"
+			],
+			[
+				"_level",
+				"_levelID	int"
+			],
+			[
+				"Progr",
+				"ProgressionManager	ProgressionManager"
+			],
+			[
+				"aced",
+				"acedRing	GameObject"
+			],
+			[
+				"comple",
+				"completedRing	GameObject"
+			],
+			[
+				"lock",
+				"locked	bool"
+			],
+			[
+				"debug",
+				"debugLevelID	int"
+			],
+			[
+				"_leve",
+				"_levelInfo	Level"
+			],
+			[
+				"ro",
+				"rotation	Quaternion { get; set; }"
+			],
+			[
+				"spaw",
+				"spawnPort(Direction direction, int id)	void"
+			],
+			[
+				"turret_s",
+				"turret_static	Sprite"
+			],
+			[
+				"turret",
+				"turret_spawner	Sprite"
+			],
+			[
+				"Sprite",
+				"Sprite	Sprite"
+			],
+			[
+				"Move",
+				"MoveManager	MoveManager"
+			],
+			[
 				"p",
 				"Push(T item)	void"
 			],
@@ -32,24 +348,12 @@
 				"debugLevelID	int"
 			],
 			[
-				"debug",
-				"debugZoneName	string"
-			],
-			[
 				"z",
 				"CurrentZone	Zone { get; }"
 			],
 			[
 				"Curr",
 				"CurrentLevelPackName	string { get; }"
-			],
-			[
-				"_level",
-				"_levelPackName	string"
-			],
-			[
-				"level",
-				"levelID	int"
 			],
 			[
 				"progr",
@@ -104,10 +408,6 @@
 				"loadPack(string packName)	void"
 			],
 			[
-				"Load",
-				"Load<T>(string path)	T"
-			],
-			[
 				"LevelAce",
 				"LevelAced(int levelID, int numberOfMoves)	void"
 			],
@@ -144,10 +444,6 @@
 				"EnterLevel(int levelID)	void"
 			],
 			[
-				"Set",
-				"SetInitialClip(AudioClip clip)	void"
-			],
-			[
 				"trans",
 				"transition(AudioClip nextClip)	IEnumerator"
 			],
@@ -158,14 +454,6 @@
 			[
 				"IE",
 				"IEnumerator	IEnumerator"
-			],
-			[
-				"Get",
-				"GetCurrentMenuClip()	AudioClip"
-			],
-			[
-				"new",
-				"newClip	AudioClip"
 			],
 			[
 				"IEN",
@@ -192,10 +480,6 @@
 				"Dictionary<TKey, TValue>(int capacity)	Dictionary(int capacity)"
 			],
 			[
-				"To",
-				"ToString(string format)	string"
-			],
-			[
 				"Res",
 				"Resources	Resources"
 			],
@@ -206,10 +490,6 @@
 			[
 				"Comple",
 				"CompletionPercentage	float"
-			],
-			[
-				"is",
-				"IsComplete	bool"
 			],
 			[
 				"XmlArray",
@@ -232,322 +512,42 @@
 				"MemoryStream(byte[] buffer)	MemoryStream(byte[] buffer)"
 			],
 			[
-				"name",
-				"nameOfCurrentZone	string"
-			],
-			[
 				"leve",
 				"LevelID	int"
-			],
-			[
-				"Com",
-				"Combine(string path1, string path2)	string"
-			],
-			[
-				"XMlArray",
-				"XmlArrayItemAttribute	XmlArrayItemAttribute"
-			],
-			[
-				"Sele",
-				"SelectSingleNode(string xpath)	XmlNode"
-			],
-			[
-				"file",
-				"filepath	string"
-			],
-			[
-				"XMl",
-				"XmlDocument()	XmlDocument()"
-			],
-			[
-				"XML",
-				"XmlDocument	XmlDocument"
-			],
-			[
-				"S",
-				"SocialPlatforms	SocialPlatforms"
-			],
-			[
-				"Uni",
-				"UnityEngine	UnityEngine"
-			],
-			[
-				"tar",
-				"_targetScore	int"
-			],
-			[
-				"Range",
-				"Range(int min, int max)	int"
-			],
-			[
-				"base",
-				"baseScale	float"
-			],
-			[
-				"time",
-				"timePerUpdate	float"
-			],
-			[
-				"Layer",
-				"LayeredCamera	LayeredCamera"
-			],
-			[
-				"_eer",
-				"_energyRingHolder	GameObject"
-			],
-			[
-				"Cie",
-				"CeilToInt(float f)	int"
-			],
-			[
-				"_energ",
-				"_energyValue	float"
-			],
-			[
-				"ener",
-				"energyRequired	float"
-			],
-			[
-				"energ",
-				"energyRemaining	float"
-			],
-			[
-				"energyR",
-				"energyRequired	float"
-			],
-			[
-				"jump",
-				"jump_upTime	float"
-			],
-			[
-				"Base",
-				"BaseWhale	BaseWhale"
-			],
-			[
-				"easeInOut",
-				"easeInOutQuad	LeanTweenType"
-			],
-			[
-				"rotate",
-				"rotateZ(GameObject gameObject, float to, float time)	LTDescr"
-			],
-			[
-				"Vector",
-				"Vector3()	Vector3()"
-			],
-			[
-				"scale",
-				"scale(GameObject gameObject, Vector3 to, float time)	LTDescr"
-			],
-			[
-				"Lean",
-				"LeanTween	LeanTween"
-			],
-			[
-				"vale",
-				"value(GameObject gameObject, Action<float> callOnUpdate, float from, float to, float time)	LTDescr"
-			],
-			[
-				"Dismiss",
-				"DismissSettings()	void"
-			],
-			[
-				"Canva",
-				"CanvasGroup	CanvasGroup"
-			],
-			[
-				"LeanTw",
-				"LeanTween	LeanTween"
-			],
-			[
-				"_settings",
-				"_settingsPanel	SettingsPanel"
-			],
-			[
-				"_UI",
-				"_UIBar	Image"
-			],
-			[
-				"TurnO",
-				"TurnOnCenter()	void"
-			],
-			[
-				"_ret",
-				"_reticleCenter	SpriteRenderer"
-			],
-			[
-				"vect",
-				"Vector3	Vector3"
-			],
-			[
-				"setEase",
-				"setEase(LeanTweenType easeType)	LTDescr"
-			],
-			[
-				"Ener",
-				"EnergySegmentLight	EnergySegmentLight"
-			],
-			[
-				"val",
-				"value(GameObject gameObject, Action<float> callOnUpdate, float from, float to, float time)	LTDescr"
-			],
-			[
-				"Prese",
-				"PresentSelfCoroutine()	IEnumerator"
-			],
-			[
-				"Sprite",
-				"SpriteRenderer	SpriteRenderer"
-			],
-			[
-				"Presnt",
-				"PresentSettings()	void"
-			],
-			[
-				"Ien",
-				"IEnumerator	IEnumerator"
-			],
-			[
-				"rot",
-				"rotate(RectTransform rectTrans, float to, float time)	LTDescr"
-			],
-			[
-				"easeoutC",
-				"easeOutBack	LeanTweenType"
-			],
-			[
-				"Le",
-				"LeanTweenType	LeanTweenType"
-			],
-			[
-				"easeInC",
-				"easeInCubic	LeanTweenType"
-			],
-			[
-				"Leant",
-				"LeanTweenType	LeanTweenType"
-			],
-			[
-				"move",
-				"move(RectTransform rectTrans, Vector3 to, float time)	LTDescr"
-			],
-			[
-				"GetComponent",
-				"GetComponent<T>()	T"
-			],
-			[
-				"selec",
-				"selectedCharacter	CharacterName"
-			],
-			[
-				"play",
-				"Play()	void"
-			],
-			[
-				"Dismi",
-				"DismissSkillSelection()	void"
-			],
-			[
-				"Chara",
-				"CharacterName	CharacterName"
-			],
-			[
-				"sele",
-				"selectedCharacter	CharacterName"
-			],
-			[
-				"char",
-				"charName	CharacterName"
-			],
-			[
-				"sel",
-				"selectedCharacter	CharacterName"
-			],
-			[
-				"cha",
-				"charName	CharacterName"
-			],
-			[
-				"Spri",
-				"SpriteRenderer	SpriteRenderer"
-			],
-			[
-				"_jum",
-				"_jumpUp	AudioSource"
-			],
-			[
-				"tier",
-				"tierText	string"
-			],
-			[
-				"ski",
-				"skillTier	int"
-			],
-			[
-				"deb",
-				"DEBUG	bool"
-			],
-			[
-				"UI",
-				"UnityEngine	UnityEngine"
-			],
-			[
-				"Present",
-				"PresentNewTierScreen(int tier)	void"
-			],
-			[
-				"Player",
-				"PlayerPrefs	PlayerPrefs"
-			],
-			[
-				"alp",
-				"CrossFadeAlpha(float alpha, float duration, bool ignoreTimeScale)	void"
-			],
-			[
-				"IEnu",
-				"IEnumerator	IEnumerator"
-			],
-			[
-				"Start",
-				"StartCoroutine(IEnumerator routine)	Coroutine"
-			],
-			[
-				"shae",
-				"shakeMagnitude	float"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Assets/Scripts/Puzzle Visuals/CompletionScreen.cs",
+			"file": "Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
 			"settings":
 			{
-				"buffer_size": 1113,
+				"buffer_size": 11722,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Game Systems/ProgressionManager.cs",
+			"file": "Assets/Scripts/Puzzle Logic/Turret.cs",
 			"settings":
 			{
-				"buffer_size": 8467,
+				"buffer_size": 11197,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Scripts/Level Select/DragSnapper.cs",
+			"file": "Assets/Scripts/Puzzle Visuals/VisualTurret.cs",
 			"settings":
 			{
-				"buffer_size": 3933,
+				"buffer_size": 9628,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/Test/Blacklight.shader",
+			"file": "Assets/Scripts/Puzzle Visuals/VisualGrid.cs",
 			"settings":
 			{
-				"buffer_size": 1083,
+				"buffer_size": 8080,
 				"line_ending": "Unix"
 			}
 		}
@@ -613,30 +613,63 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/jak/Documents/Unity/5.0/VividGrid",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Editor",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Editor/Level Editor",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Scripts",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Scripts/Level Editor",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Test"
+		"/Users/jak/Documents/Unity/Vivid Grid",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts"
 	],
 	"file_history":
 	[
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Scripts/Level Editor/PuzzleGridEditor.cs",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Test/BlacklightImageEffect.cs",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Test/ImageEffect.cs",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Scripts/Puzzle Logic/MoveManager.cs",
-		"/Users/jak/Documents/Unity/5.0/VividGrid/Assets/Scripts/Puzzle Logic/Turret.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/VisualTurret.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/VisualGrid.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Data/Default_LevelPackZoneLoadData.xml",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectIcon.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectZone.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectManager.cs",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/ProgressionManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/MoveManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Editor/PuzzleGridEditor.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectLevelPack.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/Testing Build/LevelTestingProgressionManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/Testing Build/LevelTesterSkipScreen.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/Testing Build/LevelTester.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/Testing Build/LevelTestingDataScreen.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/LevelTestingProgressionManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/LevelTester.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/PuzzleGridEditor.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Editor/Level Editor/PuzzleGridEditor.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Editor/PuzzleGridEditorHelper.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/PuzzleGridEditor.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Testing/l_0.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/CompletionScreen.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectManager.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/EditorTurret.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/LevelTestingLandingScreen.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Editor/SpawnTurretButton.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone1/level1.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level8.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level7.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level6.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level5.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level3.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level4.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/Turret.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/VisualTurret.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/VisualGrid.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level2.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone2/level1.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/DragSnapper.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Data/Default_LevelPackZoneLoadData.xml",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/TintCycle.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/VerticalScrollSnap.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/HorizontalScrollScript.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/GridMovement.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Garbage.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Shaders/Textures-Overlay.shader",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Shaders/Sprites-Overlay.shader",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Shaders/Overlay.shader",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Visuals/TurretHead.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectIcon.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Shaders/Diffuse-Mask.shader",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Level Select/LevelSelectZone.cs",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone1/level8.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone1/level7.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone1/level3.txt",
+		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/Default/Zone1/level6.txt",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level8.txt",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level7.txt",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Resources/Levels/level6.txt",
@@ -658,7 +691,6 @@
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/DefaultLevelPackZoneData.xml",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/DefaultLevelPackZoneData 1.xml",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/Singletons.cs",
-		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Puzzle Logic/Turret.cs",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Scripts/Game Systems/Utilities.cs",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/Zones.xml",
 		"/Users/jak/Documents/Unity/Vivid Grid/Assets/Data/Zones/zones.xml",
@@ -714,43 +746,7 @@
 		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/GUI/SkillGUI.cs",
 		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/Skills/SkillGUI.cs",
 		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/Skills/SkillData.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Scene Scripts/AttractMovie.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/Skills/SkillNPCDataManager.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/SkillDataManager.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/SkillNPCDataManager.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/CustomAssetUtility.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/SkillAsset.cs",
-		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Lighthouse Scripts/Systems/Game Data/Skill.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/_GDC GARBAGE/SceneManager.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Game Systems/SceneManager.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Game Systems/InputManager.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Game Systems/LayeredCamera.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Spawning/WhaleSpawnManager.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Jets/CreateObjects.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Entity Scripts/Whales/BaseWhale.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Gameplay/Weapons/BaseWeapon.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Gameplay/Player.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Entity Scripts/Whales/EnergyNode.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Environment/ScrollingUVs.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Entity Scripts/Whales/WhaleNodeLayout.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Gameplay/Weapons/MainWeapon.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Game Systems/HUDManager.cs",
-		"/Users/jak/Documents/Unity/(whales)/(whales).sublime-project",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Entity Scripts/Whales/UnlockNode.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Entity Scripts/Whales/KillNode.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Entity Scripts/Whales/LockNode.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Interaction Scripts/BlackBar.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Interaction Scripts/Reticle.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Gameplay/Skills/BaseSkill.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Gameplay/Skills/FireRateSkill.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Gameplay/Skills/SkillManager.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Spawning/WhaleSpawnLayer.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Scene Scripts/Spawning/WhaleSpawnPoint.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Spine/spine-unity/SkeletonAnimator.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Spine/spine-unity/SkeletonRenderer.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Scripts/Spine/spine-unity/Editor/SpineEditorUtilities.cs",
-		"/Users/jak/Documents/Unity/(whales)/Assets/Garbage.cs",
-		"/Users/jak/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+		"/Users/jak/Documents/Unity/52hz/Assets/Scripts/Scene Scripts/AttractMovie.cs"
 	],
 	"find":
 	{
@@ -768,6 +764,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"application",
 			"currentLevelPackName",
 			"levelPackName",
 			"crossfade()",
@@ -798,33 +795,83 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Assets/Scripts/Puzzle Visuals/CompletionScreen.cs",
+					"file": "Assets/Scripts/Puzzle Logic/PuzzleGrid.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1113,
+						"buffer_size": 11722,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								8568,
+								8568
 							]
 						],
 						"settings":
 						{
 							"oops":
 							{
-								"176,180": "Name should have prefix '_'. (Rule 'Fields').",
-								"195,207": "Name should have prefix '_'. (Rule 'Fields').",
-								"502,516": "Method 'ReturnMainMenu' can be made static."
+								"289,290": "Parameter 'i' is never used",
+								"297,301": "Parameter 'type' is never used",
+								"3139,3140": "Assignment is redundant",
+								"729,745": "Name should have prefix '_'. (Rule 'Fields').",
+								"7704,7708": "Parameter can be IComparable",
+								"781,793": "Name should have prefix '_'. (Rule 'Fields').",
+								"838,843": "Name should have prefix '_'. (Rule 'Fields').",
+								"860,878": "Name should have prefix '_'. (Rule 'Fields').",
+								"8707,8709": "Parameter 'id' is never used",
+								"895,908": "Name should have prefix '_'. (Rule 'Fields').",
+								"922,934": "Name should have prefix '_'. (Rule 'Fields')."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/Puzzle Logic/Turret.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11197,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								330,
+								330
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"2091,2158": "Convert to 'return' statement",
+								"5046,5048": "Parameter can be IComparable",
+								"5054,5057": "Parameter can be IComparable",
+								"5063,5066": "Parameter can be IComparable",
+								"7219,7236": "Method 'GetLocalDirection' can be made static.",
+								"7545,7562": "Method 'GetWorldDirection' can be made static.",
+								"7871,7884": "Method 'FlipDirection' can be made static.",
+								"8090,8105": "Method 'ReverseRotation' can be made static.",
+								"8847,8921": "Redundant 'else' keyword"
 							},
 							"syntax": "Packages/C#/C#.tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -837,58 +884,49 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Game Systems/ProgressionManager.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8467,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								261,
-								261
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "Assets/Scripts/Level Select/DragSnapper.cs",
+					"file": "Assets/Scripts/Puzzle Visuals/VisualTurret.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3933,
+						"buffer_size": 9628,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								960,
-								960
+								796,
+								796
 							]
 						],
 						"settings":
 						{
+							"oops":
+							{
+								"300,309": "The private field '_upAnchor' is never assigned",
+								"347,359": "The private field '_rightAnchor' is never assigned",
+								"397,408": "The private field '_downAnchor' is never assigned",
+								"446,457": "The private field '_leftAnchor' is never assigned",
+								"4970,4979": "Parameter can be declared with base type",
+								"5056,5243": "Redundant 'else' keyword",
+								"515,532": "The private field 'turretHead_prefab' is never assigned",
+								"567,584": "The private field 'turretPort_prefab' is never assigned",
+								"642,654": "The private field 'turret_cw_90' is never assigned",
+								"689,702": "The private field 'turret_ccw_90' is never assigned",
+								"7109,7111": "Parameter can be IComparable",
+								"737,747": "The private field 'turret_180' is never assigned",
+								"782,795": "The private field 'turret_static' is never assigned",
+								"7866,7868": "Parameter can be IComparable",
+								"830,844": "The private field 'turret_spawner' is never assigned",
+								"879,894": "The private field 'turret_receiver' is never assigned",
+								"929,940": "The private field 'turret_port' is never assigned"
+							},
 							"syntax": "Packages/C#/C#.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 247.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -896,24 +934,41 @@
 				},
 				{
 					"buffer": 3,
-					"file": "Assets/Test/Blacklight.shader",
+					"file": "Assets/Scripts/Puzzle Visuals/VisualGrid.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1083,
+						"buffer_size": 8080,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								226,
-								226
+								7871,
+								7871
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"oops":
+							{
+								"178,197": "The private field 'buttonColumn_prefab' is never assigned",
+								"232,248": "The private field 'buttonRow_prefab' is never assigned",
+								"283,300": "The private field 'baseTurret_prefab' is never assigned",
+								"3300,5543": "Can be converted to expression",
+								"335,350": "The private field 'gridLine_prefab' is never assigned",
+								"410,422": "The private field '_gridSpacing' is never assigned",
+								"4367,5543": "Can be converted to expression",
+								"591,604": "The private field '_buttonCanvas' is never assigned",
+								"6255,6276": "Parameter can be IEnumerable",
+								"6284,6302": "Parameter can be IEnumerable",
+								"6316,6912": "Convert to constant",
+								"7068,7082": "Method 'EnableRotation' has the same with 'DisableRotation'",
+								"7206,7216": "Parameter can be IComparable",
+								"7473,7475": "Parameter can be IComparable"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -1011,7 +1066,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 297.0,
+	"side_bar_width": 304.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

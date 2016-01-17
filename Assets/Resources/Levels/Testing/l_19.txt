@@ -4,7 +4,7 @@
 3,3,Redirect,CW_180,Single,Left
 3,5,Redirect,CW_90,Single,Left
 3,7,Redirect,CCW_90,Single,Right
-3,9,Spawner,Static,Single,Up
+3,8,Spawner,Static,Single,Up
 5,1,Redirect,CCW_90,Single,Down
 5,3,Redirect,CW_90,Single,Left
-2
+3

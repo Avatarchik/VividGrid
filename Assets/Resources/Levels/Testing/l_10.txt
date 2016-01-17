@@ -9,4 +9,4 @@
 5,2,Spawner,Static,Single,Left
 5,3,Redirect,CW_90,Single,Right
 5,8,Redirect,CW_90,Single,Down
-10
+9

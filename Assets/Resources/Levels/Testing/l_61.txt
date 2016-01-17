@@ -1,0 +1,11 @@
+2,8,Receiver,Static,Receiver,Up
+2,4,Redirect,CW_180,Single,Right
+2,6,Redirect,CW_180,Single,Up
+2,2,Redirect,CW_180,Single,Down
+3,2,Redirect,CW_180,Single,Right
+3,8,Redirect,CW_180,Single,Up
+4,8,Redirect,CW_180,Single,Right
+4,4,Redirect,CW_180,Single,Down
+4,6,Redirect,CW_180,Single,Right
+5,8,Spawner,Static,Single,Left
+4
